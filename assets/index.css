@@ -759,14 +759,132 @@ body {
     margin-right: auto;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .kabinet-logo {
-        width: 220px;
-        height: 220px;
+/* Open Recruitment Section */
+.open-recruitment-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f0f23 100%);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    z-index: 2;
+    padding: 5rem 0;
+}
+.openrec-card {
+    background: rgba(255,255,255,0.04);
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 32px rgba(120,119,198,0.10);
+}
+.openrec-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #7877c6, #ff77c6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.openrec-desc {
+    color: rgba(255,255,255,0.88);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+.openrec-benefit {
+    color: #fff;
+    font-size: 1rem;
+    margin-left: 1.2rem;
+    margin-bottom: 0;
+    padding-left: 0.5rem;
+}
+.openrec-benefit li {
+    margin-bottom: 0.4rem;
+    list-style: disc;
+}
+.openrec-img {
+    display: inline-block;
+    filter: drop-shadow(0 0 24px #7877c6aa);
+    border-radius: 1.2rem;
+    background: rgba(120,119,198,0.07);
+    padding: 1.2rem;
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+}
+.openrec-komisi-logos {
+    width: 420px;
+    height: 420px;
+    position: relative;
+}
+.openrec-komisi-logo {
+    border-radius: 50%;
+    box-shadow: 0 2px 16px rgba(120,119,198,0.13);
+    background: #fff;
+    object-fit: cover;
+    border: 6px solid #fff;
+    transition: transform 0.18s;
+}
+.openrec-komisi-logo:hover {
+    transform: scale(1.08) rotate(-2deg);
+    z-index: 3;
+}
+.center-logo {
+    box-shadow: 0 0 60px #7877c6aa, 0 2px 16px rgba(120,119,198,0.13);
+    border: 6px solid #7877c6;
+    background: #fff;
+}
+@media (max-width: 1200px) {
+    .openrec-komisi-logos {
+        width: 320px;
+        height: 320px;
     }
-    
-    .motto-text {
-        font-size: 1.5rem;
+    .openrec-komisi-logo {
+        width: 80px !important;
+        height: 80px !important;
+        border-width: 4px;
+    }
+    .center-logo {
+        width: 110px !important;
+        height: 110px !important;
+    }
+}
+@media (max-width: 992px) {
+    .openrec-komisi-logos {
+        width: 200px;
+        height: 200px;
+    }
+    .openrec-komisi-logo {
+        width: 48px !important;
+        height: 48px !important;
+        border-width: 2.5px;
+    }
+    .center-logo {
+        width: 70px !important;
+        height: 70px !important;
+    }
+}
+@media (max-width: 768px) {
+    .open-recruitment-section {
+        padding: 2.5rem 0;
+    }
+    .openrec-card {
+        padding: 1.2rem 0.7rem;
+    }
+    .openrec-title {
+        font-size: 1.2rem;
+    }
+    .openrec-img {
+        max-width: 120px;
+        padding: 0.3rem;
+    }
+    .openrec-komisi-logos {
+        width: 120px;
+        height: 120px;
+    }
+    .openrec-komisi-logo {
+        width: 28px !important;
+        height: 28px !important;
+        border-width: 1.5px;
+    }
+    .center-logo {
+        width: 38px !important;
+        height: 38px !important;
     }
 }
