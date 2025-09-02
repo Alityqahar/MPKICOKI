@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPK MAN IC OKI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="img/mpk.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .scroll-arrow {
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-top: none;
+            border-left: none;
+            transform: rotate(45deg);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) rotate(45deg);
+            }
+            40% {
+                transform: translateY(-10px) rotate(45deg);
+            }
+            60% {
+                transform: translateY(-5px) rotate(45deg);
+            }
+        }
+
+        /* Loading animation */
+        body {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .navbar-custom {
+                padding: 0.4rem 0.7rem;
+            }
+            .hero-section {
+                padding-top: 80px;
+            }
+            
+            .hero-text-content {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            
+            .particle {
+                display: none;
+            }
+            
+            /* Perbaikan carousel untuk mobile */
+            .anggota-carousel-wide {
+                padding: 12px 0 0 0;
+                margin-bottom: 16px;
+            }
+            
+            .anggota-card {
+                min-width: 120px;
+                max-width: 140px;
+                padding: 10px 5px 6px 5px;
+                margin: 0 4px;
+            }
+            
+            .anggota-img-wide {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .anggota-caption h5 {
+                font-size: 0.9rem;
+                margin-bottom: 2px;
+            }
+            
+            .anggota-caption p {
+                font-size: 0.8rem;
+            }
+            
+            .divisi-logo {
+                width: 140px;
+                height: 140px;
+                padding: 18px;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e  25%, #16213e  50%, #0f0f23 75%, #0a0a0a 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        /* Navbar */
+        .navbar-custom {
+            background: rgba(10, 10, 10, 0.97);
+            backdrop-filter: blur(24px);
+            border-bottom: 1.5px solid rgba(120, 119, 198, 0.15);
+            padding: 0.6rem 1.2rem;
+            box-shadow: 0 4px 24px 0 rgba(120,119,198,0.10), 0 1.5px 0 0 #7877c6;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        .navbar-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: #fff !important;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 1px;
+        }
+
+        .navbar-brand img {
+            width: 32px;
+            height: 32px;
+            filter: drop-shadow(0 0 8px rgba(120, 119, 198, 0.7));
+            transition: transform 0.2s;
+        }
+        .navbar-brand img:hover {
+            transform: scale(1.08) rotate(-6deg);
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-weight: 600;
+            margin: 0 0.7rem;
+            transition: all 0.25s cubic-bezier(.4,2,.6,1);
+            position: relative;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            padding: 0.5rem 0.3rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #fff !important;
+            background: linear-gradient(90deg, #7877c6 0%, #ff77c6 100%);
+            box-shadow: 0 2px 16px 0 rgba(120,119,198,0.13);
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 20%;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #7877c6, #ff77c6);
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 60%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            padding-top: 76px; /* Untuk mengkompensasi navbar fixed */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #7877c6 50%, #ff77c6 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            max-width: 500px;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, #7877c6 0%, #ff77c6 100%);
+            border: none;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(120, 119, 198, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary-custom:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(120, 119, 198, 0.4);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-custom:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #7877c6;
+            transform: translateY(-3px);
+            color: white;
+        }
+
+        /* Logo Section */
+        .hero-logo-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .hero-logo {
+            width: clamp(200px, 30vw, 400px);
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(120, 119, 198, 0.6));
+            animation: logoFloat 3s ease-in-out infinite, slideInRight 1s ease-out;
+        }
+
+        .logo-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(120, 119, 198, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(120, 119, 198, 0.6);
+            border-radius: 50%;
+            animation: particleFloat 8s linear infinite;
+        }
+
+        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 60%; left: 20%; animation-delay: 2s; }
+        .particle:nth-child(3) { top: 40%; left: 80%; animation-delay: 4s; }
+        .particle:nth-child(4) { top: 80%; left: 70%; animation-delay: 6s; }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Section Divisi MPK */
+        .divisi-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f23 100%);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+            z-index: 2;
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #7877c6, #ff77c6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .divisi-tabs .nav-link {
+            color: #fff;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            margin: 0 0.5rem;
+            transition: all 0.3s;
+            border-radius: 0;
+            font-size: 1.1rem;
+            padding: 0.75rem 1.5rem;
+            position: relative;
+        }
+
+        .divisi-tabs .nav-link.active,
+        .divisi-tabs .nav-link:hover {
+            color: #ff77c6;
+            border-bottom: 2.5px solid #ff77c6;
+            background: linear-gradient(90deg, rgba(120,119,198,0.15), rgba(255,119,198,0.10));
+        }
+
+        .divisi-tab-content {
+            background: rgba(10,10,20,0.7);
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px rgba(120,119,198,0.10);
+            padding: 2.5rem 2rem;
+            margin-top: 1rem;
+            min-height: 320px;
+            animation: fadeIn 0.8s;
+        }
+
+        .divisi-logo {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7877c6 0%, #ff77c6 100%);
+            box-shadow: 0 0 48px 0 rgba(120,119,198,0.30), 0 8px 32px rgba(255,119,198,0.10);
+            padding: 24px;
+            margin-bottom: 1rem;
+            animation: logoFloat 3s ease-in-out infinite;
+            transition: transform 0.2s;
+        }
+        .divisi-logo:hover {
+            transform: scale(1.08) rotate(3deg);
+        }
+
+        .divisi-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #7877c6, #ff77c6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .divisi-desc {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.1rem;
+            font-weight: 400;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        /* Carousel Anggota Divisi Wide */
+        .anggota-carousel-wide {
+            width: 100%;
+            max-width: 100%;
+            padding: 24px 0 0 0;
+            margin: 0 auto 24px auto;
+            background: rgba(30,30,50,0.15);
+            border-radius: 1.2rem;
+            box-shadow: 0 2px 16px rgba(120,119,198,0.08);
+        }
+        
+        .anggota-card {
+            background: rgba(255,255,255,0.04);
+            border-radius: 1rem;
+            padding: 22px 18px 14px 18px;
+            margin: 0 6px;
+            box-shadow: 0 2px 12px rgba(120,119,198,0.07);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 170px;
+            max-width: 210px;
+            flex: 1 1 150px;
+            transition: all 0.3s ease;
+        }
+        
+        .anggota-card:hover {
+            transform: scale(1.06) rotate(-2deg);
+            background: rgba(120,119,198,0.08);
+            box-shadow: 0 6px 20px rgba(120,119,198,0.15);
+        }
+        
+        .anggota-img-wide {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 12px rgba(120,119,198,0.13);
+            background: #222;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .anggota-img-wide:hover {
+            transform: scale(1.09) rotate(2deg);
+        }
+        
+        .anggota-caption {
+            color: #fff;
+            text-align: center;
+            margin-top: 4px;
+        }
+        
+        .anggota-caption h5 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+            background: linear-gradient(90deg, #7877c6, #ff77c6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .anggota-caption p {
+            font-size: 0.95rem;
+            color: #ccc;
+            margin-bottom: 0;
+        }
+
+        /* Modal styling */
+        .modal-content.bg-dark {
+            background: rgba(15, 15, 35, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(120, 119, 198, 0.2);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #0a0a0a;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(120, 119, 198, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
+        /* Tambahan penyesuaian style kabinet agar lebih konsisten */
+        .kabinet-section {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+            z-index: 2;
+            padding: 5rem 0;
+        }
+        .kabinet-logo-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .kabinet-logo {
+            width: clamp(180px, 28vw, 320px);
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(120, 119, 198, 0.6));
+            animation: logoFloat 3s ease-in-out infinite, slideInRight 1s ease-out;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7877c6 0%, #ff77c6 100%);
+            box-shadow: 0 0 48px 0 rgba(120,119,198,0.30), 0 8px 32px rgba(255,119,198,0.10);
+            padding: 24px;
+        }
+        .logo-glow-kabinet {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(120, 119, 198, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .kabinet-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #7877c6, #ff77c6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+        .symbol-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ff77c6;
+            margin-bottom: 0.5rem;
+        }
+        .symbol-desc {
+            color: rgba(255,255,255,0.85);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+        .kabinet-motto {
+            background: rgba(10,10,20,0.7);
+            border: 1px solid rgba(120, 119, 198, 0.2);
+            box-shadow: 0 8px 32px rgba(120,119,198,0.10);
+        }
+        .motto-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #7877c6, #ff77c6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0;
+        }
+        .motto-desc {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (max-width: 768px) {
+            .kabinet-logo {
+                width: 160px;
+                height: 160px;
+                padding: 12px;
+            }
+            .motto-text {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="assets/img/mpk.png" alt="MPK Logo" width="32" height="32"/>
+                MPK IC OKI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hero">Beranda</a>
+                    </li>
+                    <!-- Tambah menu Kabinet -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#kabinet">Kabinet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#divisi">Komisi</a>
+                    </li>
+                    <!-- Menu Daftar -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalDaftar">Daftar</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+        <div class="hero-bg"></div>
+        
+        <!-- Floating Particles -->
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+
+        <div class="container hero-content">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6 col-md-12">
+                    <div class="hero-text-content">
+                        <h1 class="hero-title">
+                            Selamat Datang
+                        </h1>
+                        <p class="hero-subtitle">
+                            Majelis Perwakilan Kelas MAN IC OKI
+                        </p>
+                        <p class="hero-description">
+                            Bersama membangun masa depan yang lebih baik untuk seluruh siswa. 
+                            Kami hadir sebagai jembatan aspirasi dan wadah kreativitas siswa IC OKI.
+                        </p>
+                        <div class="cta-buttons">
+                            <a href="#divisi" class="btn-primary-custom">
+                                Komisi
+                            </a>
+                            <a href="angket.html" class="btn-outline-custom">
+                                Isi Angket Aspirasi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="hero-logo-container">
+                        <div class="logo-glow"></div>
+                        <img src="assets/img/mpk.png" alt="Logo MPK IC OKI" class="hero-logo" width="400" height="400">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Section Kabinet Bhaskasura -->
+    <section class="kabinet-section py-5" id="kabinet">
+        <div class="container">
+            <h2 class="text-center mb-4 section-title">Kabinet Arkhayasha Bhaskasura</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-center mb-5 mb-lg-0">
+                    <div class="kabinet-logo-container">
+                        <div class="logo-glow-kabinet"></div>
+                        <img src="img/kabinet.png" alt="Logo Kabinet Bhaskasura" class="kabinet-logo">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="kabinet-content">
+                        <h3 class="kabinet-title">Makna Logo Kabinet Arkyasha Bhaskasura</h3>
+                        <div class="kabinet-desc">
+                            <div class="symbol-item mb-3">
+                                <h5 class="symbol-title">Matahari Bersinar</h5>
+                                <p class="symbol-desc">Melambangkan semangat, pencerahan, dan kepemimpinan yang bersinar bagi seluruh anggota. "Bhaskasura" sendiri berasal dari kata "Bhaskara" (matahari), yang menegaskan peran sebagai penerang dan pengarah.</p>
+                            </div>
+                            
+                            <div class="symbol-item mb-3">
+                                <h5 class="symbol-title">Perisai</h5>
+                                <p class="symbol-desc">Melambangkan perlindungan, kekuatan, dan integritas organisasi dalam menghadapi berbagai tantangan.</p>
+                            </div>
+                            
+                            <div class="symbol-item mb-3">
+                                <h5 class="symbol-title">Padi Berlapis Emas</h5>
+                                <p class="symbol-desc">Simbol kemakmuran, kesejahteraan, serta hasil dari kerja keras bersama seluruh elemen organisasi. Padi juga mencerminkan persatuan dan gotong royong.</p>
+                            </div>
+                            
+                            <div class="symbol-item">
+                                <h5 class="symbol-title">Lima Bintang</h5>
+                                <p class="symbol-desc">Melambangkan 5 Komisi MPK serta nilai-nilai dasar yang menjadi fondasi organisasi, seperti integritas, tanggung jawab, solidaritas, profesionalitas, dan inovasi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="kabinet-motto text-center p-4 rounded-4">
+                        <h4 class="motto-text">"Burning With Fire, Shining With Glory"</h4>
+                        <p class="motto-desc mt-3">Kabinet Arkhayasha Bhaskasura hadir sebagai wadah pengembangan potensi siswa dan jembatan aspirasi antara siswa dengan pihak sekolah.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divisi MPK -->
+    <section class="divisi-section py-5" id="divisi">
+        <div class="container">
+            <h2 class="text-center mb-4 section-title">Komisi MPK MAN IC OKI</h2>
+            <ul class="nav nav-tabs justify-content-center mb-4 divisi-tabs" id="divisiTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="divisi1-tab" data-bs-toggle="tab" data-bs-target="#divisi1" type="button" role="tab" aria-controls="divisi1" aria-selected="true">
+                        BPH
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="divisi2-tab" data-bs-toggle="tab" data-bs-target="#divisi2" type="button" role="tab" aria-controls="divisi2" aria-selected="false">
+                        Kominfo
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="divisi3-tab" data-bs-toggle="tab" data-bs-target="#divisi3" type="button" role="tab" aria-controls="divisi3" aria-selected="false">
+                        Aspirasi
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="divisi4-tab" data-bs-toggle="tab" data-bs-target="#divisi4" type="button" role="tab" aria-controls="divisi4" aria-selected="false">
+                        Advokasi
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="divisi5-tab" data-bs-toggle="tab" data-bs-target="#divisi5" type="button" role="tab" aria-controls="divisi5" aria-selected="false">
+                        Legislasi 
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content divisi-tab-content" id="divisiTabContent">
+                <div class="tab-pane fade show active" id="divisi1" role="tabpanel" aria-labelledby="divisi1-tab">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 text-center mb-3 mb-md-0">
+                            <img src="img/BPH.png" alt="Divisi BPH" class="divisi-logo mb-4">
+                            <!-- Carousel Anggota BPH -->
+                            <div id="carouselBPH" class="carousel slide anggota-carousel-wide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="d-flex justify-content-center gap-4 flex-wrap">
+                                            <div class="anggota-card">
+                                                <img src="img/ketua.webp" class="anggota-img-wide" alt="Ketua MPK - M. Sheva Zuhra">
+                                                <div class="anggota-caption">
+                                                    <h5>M. Sheva Zuhra</h5>
+                                                    <p>Ketua Umum</p>
+                                                </div>
+                                            </div>
+                                            <div class="anggota-card">
+                                                <img src="img/wakil.webp" class="anggota-img-wide" alt="Wakil Ketua - Zainal Abidin">
+                                                <div class="anggota-caption">
+                                                    <h5>Zainal Abidin</h5>
+                                                    <p>Wakil Ketua</p>
+                                                </div>
+                                            </div>
+                                            <div class="anggota-card">
+                                                <img src="img/sekre1.webp" class="anggota-img-wide" alt="Sekretaris I - Farras Adzkia Azzahra">
+                                                <div class="anggota-caption">
+                                                    <h5>Farras Adzkia Azzahra</h5>
+                                                    <p>Sekretaris I</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="d-flex justify-content-center gap-4 flex-wrap">
+                                            <div class="anggota-card">
+                                                <img src="img/sekre2.webp" class="anggota-img-wide" alt="Sekretaris II - Khadijah Althafunnisa">
+                                                <div class="anggota-caption">
+                                                    <h5>Khadijah Althafunnisa</h5>
+                                                    <p>Sekretaris II</p>
+                                                </div>
+                                            </div>
+                                            <div class="anggota-card">
+                                                <img src="img/benda1.webp" class="anggota-img-wide" alt="Bendahara I - Syifa Tria Ardhani">
+                                                <div class="anggota-caption">
+                                                    <h5>Syifa Tria Ardhani</h5>
+                                                    <p>Bendahara I</p>
+                                                </div>
+                                            </div>
+                                            <div class="anggota-card">
+                                                <img src="img/benda2.webp" class="anggota-img-wide" alt="Bendahara II - Galang Widiansyah">
+                                                <div class="anggota-caption">
+                                                    <h5>Galang Widiansyah</h5>
+                                                    <p>Bendahara II</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselBPH" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselBPH" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="divisi-title">Badan Pengurus Harian</h3>
+                            <p class="divisi-desc">
+                                BPH merupakan pengurus inti MPK yang bertugas mengkoordinasi dan mengawasi kinerja seluruh komisi, 
+                                serta menjalankan fungsi administrasi dan manajemen organisasi MPK MAN IC OKI.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="divisi2" role="tabpanel" aria-labelledby="divisi2-tab">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 text-center mb-3 mb-md-0">
+                            <img src="img/komin.png" alt="Divisi Informasi" class="divisi-logo mb-4">
+                            <!-- Carousel Anggota Kominfo -->
+                            <div id="carouselKominfo" class="carousel slide anggota-carousel-wide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="d-flex justify-content-center gap-4 flex-wrap">
+                                            <div class="anggota-card">
+                                                <img src="img/koorkomin.webp" class="anggota-img-wide" alt="Koordinator Kominfo - Ality Qahar Putra Dito">
+                                                <div class="anggota-caption">
+                                                    <h5>Ality Qahar Putra Dito</h5>
+                                                    <p>Koordinator</p>
+                                                </div>
+                                            </div>
+                                            <div class="anggota-card">
+                                                <img src="img/komin1.webp" class="anggota-img-wide" alt="Wakil Koordinator Kominfo - M. Ghazi Yassar Bahri">
+                                                <div class="anggota-caption">
+                                                    <h5>M. Ghazi Yassar Bahri</h5>
+                                                    <p>Wakil Koordinator</p>
+                                                </div>
+                                            </div>
+                                            <div class="anggota-card">
+                                                <img src="img/komin2.webp" class="anggota-img-wide" alt="Anggota Kominfo - Hasna Luthfiyyah">
+                                                <div class="anggota-caption">
+                                                    <h5>Hasna Luthfiyyah</h5>
+                                                    <p>Anggota</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="d-flex justify-content-center gap-4 flex-wrap">
+                                            <div class="anggota-card">
+                                                <img src="img/komin3.webp" class="anggota-img-wide" alt="Anggota Kominfo - Marsa Iffah Azizah">
+                                                <div class="anggota-caption">
+                                                    <h5>Marsa Iffah Azizah</h5>
+                                                    <p>Anggota</p>
+                                                </div>
+                                            </div>
+                                            <div class="anggota-card">
+                                                <img src="img/komin4.webp" class="anggota-img-wide" alt="Anggota Kominfo - Mahira Luthfia Athifa">
+                                                <div class="anggota-caption">
+                                                    <h5>Mahira Luthfia Athifa</h5>
+                                                    <p>Anggota</p>
+                                                </div>
+                                            </div>
+                                            <div class="anggota-card">
+                                                <img src="img/komin5.webp" class="anggota-img-wide" alt="Anggota Kominfo - Fawaaz Abdul Ghani">
+                                                <div class="anggota-caption">
+                                                    <h5>Fawaaz Abdul Ghani</h5>
+                                                    <p>Anggota</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselKominfo" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselKominfo" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="divisi-title">Komisi Informasi</h3>
+                            <p class="divisi-desc">
+                                Komisi Informasi bertugas mengelola informasi dan publikasi kegiatan MPK, 
+                                serta menjaga komunikasi yang baik antara MPK, siswa, dan pihak sekolah 
+                                melalui berbagai media dan platform komunikasi.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="divisi3" role="tabpanel" aria-labelledby="divisi3-tab">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 text-center mb-3 mb-md-0">
+                            <img src="img/aspi.png" alt="Divisi Aspirasi" class="divisi-logo mb-4">
+                            <!-- Carousel Anggota Aspirasi -->
+                            <div id="carouselAspirasi" class="carousel slide anggota-carousel-wide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="d-flex justify-content-center gap-4 flex-wrap">
+                                            <div class="anggota-card">
+                                                <img src="img/kooraspi.webp" class="anggota-img-wide" alt="Koordinator Aspirasi - Fauzan Rafi Azhar">
+                                                <div class="anggota-caption">
+                                                    <h5>Fauzan Rafi Azhar</h5>
+                                                    <p>Koordinator</p>
+                                                </div>
+                                            </div>
+                                            <div class="anggota-card">
+                                                <img src="img/aspi2.webp" class="anggota-img-wide" alt="Wakil Koordinator Aspirasi - Luqman Hakim">
+                                                <div class="anggota-caption">
+                                                    <h5>Luqman Hakim</h5>
+                                                    <p>Wakil Koordinator</p>
+                                                </div>
+                                            </div>
+                                            <div class="anggota-card">
+                                                <img src="img/aspi3.webp" class="anggota-img-wide" alt="Anggota Aspirasi - Muhammad Abyan Farras">
+                                                <div class="anggota-caption">
+                                                    <h5>M Muhammad Abyan Farras</h5>
+                                                    <p>Anggota</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="d-flex justify-content-center gap-4 flex-wrap">
+                                            <div class="anggota-card">
+                                                <img src="img/aspi4.webp" class="anggota-img-wide" alt="Anggota Aspirasi - Siti Syarah">
+                                                <div class="anggota-caption">
+                                                    <h5>Siti Syarah</h5>
+                                                    <p>Anggota</p>
+                                                </div>
+                                            </div>
+                                            <div class="anggota-card">
+                                                <img src="img/aspi5.webp" class="anggota-img-wide" alt="Anggota Aspirasi - Fanny Afnan Jannati">
+                                                <div class="anggota-caption">
+                                                    <h5>Fanny Afnan Jannati</h5>
+                                                    <p>Anggota</p>
+                                                </div>
+                                            </div>
+                                            <div class="anggota-card">
+                                                <img src="img/aspi6.webp" class="anggota-img-wide" alt="Anggota Aspirasi - Aliyyah Ramadhani Yasri">
+                                                <div class="anggota-caption">
+                                                    <h5>Aliyyah Ramadhani Yasri</h5>
+                                                    <p>Anggota</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselAspirasi" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselAspirasi" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="divisi-title">Komisi Aspirasi</h3>
+                            <p class="divisi-desc">
+                                Komisi Aspirasi menjadi wadah penyaluran aspirasi, kritik, dan saran siswa 
+                                kepada pihak sekolah demi terciptanya lingkungan belajar yang kondusif, 
+                                serta memastikan setiap suara siswa didengar dan ditindaklanjuti.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="divisi4" role="tabpanel" aria-labelledby="divisi4-tab">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 text-center mb-3 mb-md-0">
+                            <img src="img/advo.png" alt="Divisi Advokasi" class="divisi-logo mb-4">
+                            <!-- Carousel Anggota Advokasi -->
+                            <div id="carouselAdvokasi" class="carousel slide anggota-carousel-wide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="d-flex justify-content-center gap-4 flex-wrap">
+                                            <div class="anggota-card">
+                                                <img src="img/advo1.webp" class="anggota-img-wide" alt="Koordinator Advokasi - Muhammad Fir Rafiqil A'la">
+                                                <div class="anggota-caption">
+                                                    <h5>Muhammad Fir Rafiqil A'la</h5>
+                                                    <p>Koordinator</p>
+                                                </div>
+                                            </div>
+                                            <div class="anggota-card">
+                                                <img src="img/advo2.webp" class="anggota-img-wide" alt="Wakil Koordinator Advokasi - Maya Durrotunnashihah">
+                                                <div class="anggota-caption">
+                                                    <h5>Maya Durrotunnashihah</h5>
+                                                    <p>Wakil Koordinator</p>
+                                                </div>
+                                            </div>
+                                            <div class="anggota-card">
+                                                <img src="img/advo3.webp" class="anggota-img-wide" alt="Anggota Advokasi - Raisya Khalilah Putri">
+                                                <div class="anggota-caption">
+                                                    <h5>Raisya Khalilah Putri</h5>
+                                                    <p>Anggota</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="d-flex justify-content-center gap-4 flex-wrap">
+                                            <div class="anggota-card">
+                                                <img src="img/advo4.webp" class="anggota-img-wide" alt="Anggota Advokasi - Rahmad Al Hidayah">
+                                                <div class="anggota-caption">
+                                                    <h5>Rahmad <br>Al Hidayah</h5>
+                                                    <p>Anggota</p>
+                                                </div>
+                                            </div>
+                                            <div class="anggota-card">
+                                                <img src="img/advo5.webp" class="anggota-img-wide" alt="Anggota Advokasi - Fauzan Alfarizi">
+                                                <div class="anggota-caption">
+                                                    <h5>Fauzan Alfarizi</h5>
+                                                    <p>Anggota</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselAdvokasi" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselAdvokasi" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="divisi-title">Komisi Advokasi</h3>
+                            <p class="divisi-desc">
+                                Komisi Advokasi bertugas membela dan memperjuangkan hak-hak siswa, 
+                                serta memberikan pendampingan dan solusi atas permasalahan yang dihadapi siswa 
+                                dalam lingkungan sekolah sesuai dengan peraturan yang berlaku.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="divisi5" role="tabpanel" aria-labelledby="divisi5-tab">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 text-center mb-3 mb-md-0">
+                            <img src="img/legis.png" alt="Komisi Legislasi" class="divisi-logo mb-4">
+                            <!-- Carousel Anggota Legislasi -->
+                            <div id="carouselLegislasi" class="carousel slide anggota-carousel-wide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="d-flex justify-content-center gap-4 flex-wrap">
+                                            <div class="anggota-card">
+                                                <img src="img/legis1.webp" class="anggota-img-wide" alt="Koordinator Legislasi - Aisyah Nur F.">
+                                                <div class="anggota-caption">
+                                                    <h5>Aisyah Nur F.</h5>
+                                                    <p>Koordinator</p>
+                                                </div>
+                                            </div>
+                                            <div class="anggota-card">
+                                                <img src="img/legis2.webp" class="anggota-img-wide" alt="Wakil Koordinator Legislasi - Albania Kamal">
+                                                <div class="anggota-caption">
+                                                    <h5>Albania Kamal</h5>
+                                                    <p>Wakil Koordinator</p>
+                                                </div>
+                                            </div>
+                                            <div class="anggota-card">
+                                                <img src="img/legis3.webp" class="anggota-img-wide" alt="Anggota Legislasi - Marchel Aditia">
+                                                <div class="anggota-caption">
+                                                    <h5>Marchel Aditia</h5>
+                                                    <p>Anggota</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="d-flex justify-content-center gap-4 flex-wrap">
+                                            <div class="anggota-card">
+                                                <img src="img/legis4.webp" class="anggota-img-wide" alt="Anggota Legislasi - Imam Zayid Ahadi">
+                                                <div class="anggota-caption">
+                                                    <h5>Imam Zayid Ahadi</h5>
+                                                    <p>Anggota</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselLegislasi" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselLegislasi" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="divisi-title">Komisi Legislasi</h3>
+                            <p class="divisi-desc">
+                                Komisi Legislasi bertugas menyusun, mengkaji, dan merevisi peraturan serta tata tertib siswa, 
+                                serta memastikan semua kebijakan yang dibuat sesuai dengan kebutuhan dan aspirasi siswa 
+                                dan sejalan dengan visi misi sekolah.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 MPK MAN IC OKI. All rights reserved.</p>
+            <p></p>
+        </div>
+    </footer>
+
+    <!-- Modal Daftar -->
+    <div class="modal fade" id="modalDaftar" tabindex="-1" aria-labelledby="modalDaftarLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-light border-0 rounded-4">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="modalDaftarLabel">Pendaftaran Belum Dibuka</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Tutup"></button>
+          </div>
+          <div class="modal-body text-center">
+            <p>Pendaftaran anggota MPK IC OKI belum dibuka.<br>Silakan cek kembali di lain waktu.</p>
+          </div>
+          <div class="modal-footer border-0 justify-content-center">
+            <button type="button" class="btn btn-primary rounded-pill px-4" data-bs-dismiss="modal">Tutup</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling untuk anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Calculate offset based on navbar height
+                    const navbarHeight = document.querySelector('.navbar-custom').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect pada scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-bg');
+            if (parallax) {
+                const speed = scrolled * 0.5;
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+
+        // Animate on load
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            
+            // Inisialisasi carousel dengan interval
+            const carousels = document.querySelectorAll('.carousel');
+            carousels.forEach(carousel => {
+                // Set interval untuk otomatis berpindah slide
+                new bootstrap.Carousel(carousel, {
+                    interval: 5000,
+                    wrap: true
+                });
+            });
+        });
+
+        // Efek transparansi navbar saat scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar-custom');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+                navbar.style.boxShadow = '0 4px 24px 0 rgba(120,119,198,0.15), 0 1.5px 0 0 #7877c6';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 10, 0.97)';
+                navbar.style.boxShadow = '0 4px 24px 0 rgba(120,119,198,0.10), 0 1.5px 0 0 #7877c6';
+            }
+        });
+    </script>
+</body>
+</html>
