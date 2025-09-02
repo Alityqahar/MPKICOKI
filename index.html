@@ -677,6 +677,115 @@
                 font-size: 1.2rem;
             }
         }
+
+        /* Open Recruitment Section */
+        .open-recruitment-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f23 100%);
+            padding: 5rem 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .openrec-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px rgba(120,119,198,0.10);
+            transition: transform 0.3s;
+        }
+
+        .openrec-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .openrec-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #7877c6, #ff77c6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .openrec-desc {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .openrec-benefit {
+            list-style: none;
+            padding-left: 0;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 1.5rem;
+        }
+
+        .openrec-benefit li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .openrec-benefit li::before {
+            content: '✔️';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #ff77c6;
+            font-size: 1.2rem;
+        }
+
+        .btn-unduh-formulir {
+            display: inline-block;
+            background: linear-gradient(135deg, #7877c6 0%, #ff77c6 100%);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-unduh-formulir::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-unduh-formulir:hover::before {
+            left: 100%;
+        }
+
+        .btn-unduh-formulir:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(120, 119, 198, 0.4);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .openrec-card {
+                padding: 1.5rem;
+            }
+            .openrec-title {
+                font-size: 1.5rem;
+            }
+            .openrec-desc {
+                font-size: 1rem;
+            }
+            .openrec-benefit li {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -702,9 +811,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#divisi">Komisi</a>
                     </li>
-                    <!-- Menu Daftar -->
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalDaftar">Daftar</a>
+                        <a class="nav-link" href="#open-recruitment">Pendaftaran</a>
                     </li>
                 </ul>
             </div>
@@ -809,6 +917,7 @@
         </div>
     </section>
 
+    
     <!-- Section Divisi MPK -->
     <section class="divisi-section py-5" id="divisi">
         <div class="container">
@@ -1213,6 +1322,50 @@
         </div>
     </section>
 
+    <!-- Section Open Recruitment -->
+    <section class="open-recruitment-section py-5" id="open-recruitment">
+        <div class="container">
+            <h2 class="text-center mb-4 section-title">Open Recruitment MPK</h2>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-7">
+                    <div class="openrec-card p-4 rounded-4 mb-4 mb-lg-0 shadow-lg">
+                        <h3 class="openrec-title mb-3">Bergabunglah Bersama Kami!</h3>
+                        <p class="openrec-desc mb-3">
+                            MPK MAN IC OKI membuka kesempatan bagi siswa-siswi terbaik untuk menjadi bagian dari keluarga besar MPK.
+                            Jadilah agen perubahan, penyalur aspirasi, dan pelopor kegiatan positif di lingkungan sekolah!
+                        </p>
+                        <ul class="openrec-benefit mb-4">
+                            <li>Pengalaman organisasi & kepemimpinan</li>
+                            <li>Relasi & networking antar siswa</li>
+                            <li>Pengembangan softskill & teamwork</li>
+                            <li>Kontribusi nyata untuk sekolah</li>
+                        </ul>
+                        <div class="text-center mt-4">
+                            <a href="formulir-pendaftaran.pdf" class="btn-unduh-formulir" download>
+                                Unduh Formulir Pendaftaran
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 text-center">
+                    <div class="openrec-komisi-logos position-relative d-inline-block mb-3" style="width: 420px; height: 420px;">
+                        <!-- BPH di tengah -->
+                        <img src="img/BPH.png" alt="BPH" class="openrec-komisi-logo center-logo" style="position:absolute;left:50%;top:50%;width:160px;height:160px;transform:translate(-50%,-50%);z-index:2;">
+                        <!-- Kominfo atas -->
+                        <img src="img/komin.png" alt="Kominfo" class="openrec-komisi-logo" style="position:absolute;left:50%;top:30px;width:120px;height:120px;transform:translateX(-50%);z-index:1;">
+                        <!-- Aspirasi kanan atas -->
+                        <img src="img/aspi.png" alt="Aspirasi" class="openrec-komisi-logo" style="position:absolute;left:340px;top:100px;width:120px;height:120px;z-index:1;">
+                        <!-- Advokasi kanan bawah -->
+                        <img src="img/advo.png" alt="Advokasi" class="openrec-komisi-logo" style="position:absolute;left:270px;top:300px;width:120px;height:120px;z-index:1;">
+                        <!-- Legislasi kiri bawah -->
+                        <img src="img/legis.png" alt="Legislasi" class="openrec-komisi-logo" style="position:absolute;left:30px;top:300px;width:120px;height:120px;z-index:1;">
+                        <!-- BPH bayangan/keseimbangan kiri atas (kosong/opacity 0) -->
+                        <img src="img/BPH.png" alt="BPH Bayangan" class="openrec-komisi-logo" style="position:absolute;left:-20px;top:100px;width:120px;height:120px;z-index:1;opacity:0;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1220,24 +1373,6 @@
             <p></p>
         </div>
     </footer>
-
-    <!-- Modal Daftar -->
-    <div class="modal fade" id="modalDaftar" tabindex="-1" aria-labelledby="modalDaftarLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark text-light border-0 rounded-4">
-          <div class="modal-header border-0">
-            <h5 class="modal-title" id="modalDaftarLabel">Pendaftaran Belum Dibuka</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Tutup"></button>
-          </div>
-          <div class="modal-body text-center">
-            <p>Pendaftaran anggota MPK IC OKI belum dibuka.<br>Silakan cek kembali di lain waktu.</p>
-          </div>
-          <div class="modal-footer border-0 justify-content-center">
-            <button type="button" class="btn btn-primary rounded-pill px-4" data-bs-dismiss="modal">Tutup</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -1299,5 +1434,4 @@
 </body>
 
 </html>
-
 
