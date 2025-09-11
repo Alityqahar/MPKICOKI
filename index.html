@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MPK MAN IC OKI</title>
+    <title>Majelis Permusyawaratan Kelas | MAN IC OKI</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="img/mpk.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #7877c6;
+            --secondary: #ff77c6;
+            --dark: #0a0a0a;
+            --dark-light: #1a1a2e;
+            --text-light: rgba(255, 255, 255, 0.85);
+        }
+        
         .scroll-indicator {
             position: absolute;
             bottom: 30px;
@@ -94,6 +103,19 @@
                 height: 140px;
                 padding: 18px;
             }
+
+            .hero-title {
+                font-size: 2.5rem !important;
+            }
+            
+            .section-title {
+                font-size: 2rem !important;
+            }
+            
+            .kabinet-logo {
+                width: 180px !important;
+                height: 180px !important;
+            }
         }
 
         * {
@@ -103,9 +125,11 @@
         }
 
         body {
-            background: #0a0a0a;
+            background: var(--dark);
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            color: var(--text-light);
+            line-height: 1.6;
         }
 
         /* Animated Background */
@@ -150,12 +174,12 @@
             backdrop-filter: blur(24px);
             border-bottom: 1.5px solid rgba(120, 119, 198, 0.15);
             padding: 0.6rem 1.2rem;
-            box-shadow: 0 4px 24px 0 rgba(120,119,198,0.10), 0 1.5px 0 0 #7877c6;
+            box-shadow: 0 4px 24px 0 rgba(120,119,198,0.10), 0 1.5px 0 0 var(--primary);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            transition: background 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
         }
 
         .navbar-brand {
@@ -194,7 +218,7 @@
 
         .nav-link:hover, .nav-link.active {
             color: #fff !important;
-            background: linear-gradient(90deg, #7877c6 0%, #ff77c6 100%);
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
             box-shadow: 0 2px 16px 0 rgba(120,119,198,0.13);
             transform: translateY(-2px) scale(1.05);
         }
@@ -206,7 +230,7 @@
             left: 20%;
             width: 0;
             height: 3px;
-            background: linear-gradient(90deg, #7877c6, #ff77c6);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 2px;
             transition: width 0.3s;
         }
@@ -234,9 +258,9 @@
 
         .hero-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: clamp(3rem, 8vw, 5rem);
             font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 0%, #7877c6 50%, #ff77c6 100%);
+            background: linear-gradient(135deg, #ffffff 0%, var(--primary) 50%, var(--secondary) 100%);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -270,7 +294,7 @@
         }
 
         .btn-primary-custom {
-            background: linear-gradient(135deg, #7877c6 0%, #ff77c6 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             border: none;
             padding: 12px 32px;
             border-radius: 50px;
@@ -281,6 +305,9 @@
             box-shadow: 0 8px 25px rgba(120, 119, 198, 0.3);
             position: relative;
             overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-primary-custom::before {
@@ -313,11 +340,14 @@
             color: white;
             text-decoration: none;
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-outline-custom:hover {
             background: rgba(255, 255, 255, 0.1);
-            border-color: #7877c6;
+            border-color: var(--primary);
             transform: translateY(-3px);
             color: white;
         }
@@ -402,26 +432,173 @@
             100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Section Divisi MPK */
-        .divisi-section {
-            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f23 100%);
-            border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            position: relative;
-            z-index: 2;
+        /* Section Styling */
+        .section-container {
             padding: 5rem 0;
+            position: relative;
         }
-
+        
         .section-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            background: linear-gradient(90deg, #7877c6, #ff77c6);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             letter-spacing: 1px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        /* Section Kabinet Bhaskasura */
+        .kabinet-section {
+            background: linear-gradient(135deg, var(--dark-light) 0%, var(--dark) 100%);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .kabinet-logo-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .kabinet-logo {
+            width: clamp(200px, 28vw, 320px);
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(120, 119, 198, 0.6));
+            animation: logoFloat 3s ease-in-out infinite, slideInRight 1s ease-out;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            box-shadow: 0 0 48px 0 rgba(120,119,198,0.30), 0 8px 32px rgba(255,119,198,0.10);
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .kabinet-logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-glow-kabinet {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(120, 119, 198, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .kabinet-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+        
+        .symbol-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .symbol-title i {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+        
+        .symbol-desc {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+        
+        .kabinet-motto {
+            background: rgba(10,10,20,0.7);
+            border: 1px solid rgba(120, 119, 198, 0.2);
+            box-shadow: 0 8px 32px rgba(120,119,198,0.10);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .kabinet-motto::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(120,119,198,0.1), rgba(255,119,198,0.05));
+            z-index: -1;
+        }
+        
+        .motto-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .motto-desc {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Section Divisi MPK */
+        .divisi-section {
+            background: linear-gradient(135deg, var(--dark-light) 0%, var(--dark) 100%);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         .divisi-tabs .nav-link {
@@ -441,8 +618,8 @@
 
         .divisi-tabs .nav-link.active,
         .divisi-tabs .nav-link:hover {
-            color: #ff77c6;
-            border-bottom: 2.5px solid #ff77c6;
+            color: var(--secondary);
+            border-bottom: 2.5px solid var(--secondary);
             background: linear-gradient(90deg, rgba(120,119,198,0.15), rgba(255,119,198,0.10));
         }
 
@@ -454,6 +631,7 @@
             margin-top: 1rem;
             min-height: 320px;
             animation: fadeIn 0.8s;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         .divisi-logo {
@@ -461,7 +639,7 @@
             height: 180px;
             object-fit: contain;
             border-radius: 50%;
-            background: linear-gradient(135deg, #7877c6 0%, #ff77c6 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             box-shadow: 0 0 48px 0 rgba(120,119,198,0.30), 0 8px 32px rgba(255,119,198,0.10);
             padding: 24px;
             margin-bottom: 1rem;
@@ -478,7 +656,7 @@
             font-weight: 700;
             color: #fff;
             margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, #7877c6, #ff77c6);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -521,6 +699,7 @@
             max-width: 210px;
             flex: 1 1 150px;
             transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.05);
         }
         
         .anggota-card:hover {
@@ -555,7 +734,7 @@
             font-size: 1.05rem;
             font-weight: 700;
             margin-bottom: 2px;
-            background: linear-gradient(90deg, #7877c6, #ff77c6);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -576,214 +755,273 @@
         
         /* Footer */
         .footer {
-            background: #0a0a0a;
-            padding: 2rem 0;
+            background: var(--dark);
+            padding: 3rem 0 1.5rem;
             border-top: 1px solid rgba(120, 119, 198, 0.2);
             color: rgba(255, 255, 255, 0.7);
             text-align: center;
         }
-
-        /* Tambahan penyesuaian style kabinet agar lebih konsisten */
-        .kabinet-section {
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
-            border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            position: relative;
-            z-index: 2;
-            padding: 5rem 0;
+        
+        .footer-logo {
+            width: 60px;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
         }
-        .kabinet-logo-container {
-            position: relative;
+        
+        .footer-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .social-links {
             display: flex;
             justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-link {
+            display: inline-flex;
             align-items: center;
-            height: 100%;
-        }
-        .kabinet-logo {
-            width: clamp(180px, 28vw, 320px);
-            height: auto;
-            filter: drop-shadow(0 0 30px rgba(120, 119, 198, 0.6));
-            animation: logoFloat 3s ease-in-out infinite, slideInRight 1s ease-out;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #7877c6 0%, #ff77c6 100%);
-            box-shadow: 0 0 48px 0 rgba(120,119,198,0.30), 0 8px 32px rgba(255,119,198,0.10);
-            padding: 24px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            transition: all 0.3s ease;
         }
-        .logo-glow-kabinet {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: 80%;
-            background: radial-gradient(circle, rgba(120, 119, 198, 0.2) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
+        
+        .social-link:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transform: translateY(-3px);
+            color: white;
         }
-        .kabinet-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, #7877c6, #ff77c6);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1.5rem;
-            letter-spacing: 1px;
-        }
-        .symbol-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #ff77c6;
-            margin-bottom: 0.5rem;
-        }
-        .symbol-desc {
-            color: rgba(255,255,255,0.85);
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 0;
-        }
-        .kabinet-motto {
-            background: rgba(10,10,20,0.7);
-            border: 1px solid rgba(120, 119, 198, 0.2);
-            box-shadow: 0 8px 32px rgba(120,119,198,0.10);
-        }
-        .motto-text {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, #7877c6, #ff77c6);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0;
-        }
-        .motto-desc {
-            color: rgba(255,255,255,0.85);
-            font-size: 1.1rem;
-            line-height: 1.6;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        @media (max-width: 768px) {
-            .kabinet-logo {
-                width: 160px;
-                height: 160px;
-                padding: 12px;
-            }
-            .motto-text {
-                font-size: 1.2rem;
-            }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
         }
 
         /* Open Recruitment Section */
-        .open-recruitment-section {
-            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f23 100%);
+        .pengumuman-section {
+            background: linear-gradient(135deg, var(--dark-light) 0%, var(--dark) 100%);
             padding: 5rem 0;
             position: relative;
             z-index: 2;
         }
-
-        .openrec-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 1.5rem;
-            padding: 2.5rem;
+        
+        .pengumuman-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(120,119,198,0.25);
+            border-radius: 1.3rem;
+            padding: 1.8rem 1.6rem;
             box-shadow: 0 8px 32px rgba(120,119,198,0.10);
-            transition: transform 0.3s;
+            backdrop-filter: blur(6px);
         }
-
-        .openrec-card:hover {
-            transform: translateY(-5px);
+        
+        .syarat-list {
+            margin: 0 0 1rem 0.2rem;
+            padding-left: 1.1rem;
+            color: rgba(255,255,255,0.85);
+            font-size: 0.98rem;
         }
-
-        .openrec-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, #7877c6, #ff77c6);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .openrec-desc {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .openrec-benefit {
-            list-style: none;
-            padding-left: 0;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 1.5rem;
-        }
-
-        .openrec-benefit li {
+        
+        .syarat-list li { 
+            margin-bottom: 0.4rem; 
             position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
         }
-
-        .openrec-benefit li::before {
-            content: '✔️';
+        
+        .syarat-list li::before {
+            content: '•';
+            color: var(--secondary);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .accordion-button {
+            background: rgba(120,119,198,0.10);
+            color: #fff;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+            border: none;
+            border-radius: 12px !important;
+            padding: 1rem 1.5rem;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background: linear-gradient(90deg, rgba(120,119,198,0.25), rgba(255,119,198,0.20));
+            color: #ffb6ec;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+        }
+        
+        .accordion-button:focus { 
+            box-shadow: 0 0 0 0.15rem rgba(255,119,198,0.4); 
+        }
+        
+        .accordion-item { 
+            background: transparent; 
+            border: 1px solid rgba(120,119,198,0.25); 
+            border-radius: 12px !important; 
+            overflow: hidden; 
+            margin-bottom: 1rem;
+        }
+        
+        .badge-komisi { 
+            background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+            font-size: 0.65rem; 
+            letter-spacing: 0.5px; 
+        }
+        
+        .subtitle-pengumuman { 
+            color: rgba(255,255,255,0.75); 
+            font-size: 1.1rem; 
+            max-width: 760px; 
+            margin: 0 auto 2rem; 
+            text-align: center;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
             position: absolute;
             left: 0;
             top: 0;
-            color: #ff77c6;
-            font-size: 1.2rem;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
         }
-
-        .btn-unduh-formulir {
-            display: inline-block;
-            background: linear-gradient(135deg, #7877c6 0%, #ff77c6 100%);
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
+        
+        .timeline-item {
             position: relative;
-            overflow: hidden;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
         }
-
-        .btn-unduh-formulir::before {
+        
+        .timeline-item::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
+            left: -1.9rem;
+            top: 0.3rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--secondary);
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-content {
+            color: rgba(255,255,255,0.8);
         }
 
-        .btn-unduh-formulir:hover::before {
-            left: 100%;
-        }
-
-        .btn-unduh-formulir:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(120, 119, 198, 0.4);
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(120, 119, 198, 0.3);
+            transition: all 0.3s ease;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(120, 119, 198, 0.5);
         }
 
-        @media (max-width: 768px) {
-            .openrec-card {
-                padding: 1.5rem;
+        /* Countdown Timer */
+        .countdown-container {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .countdown-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 70px;
+        }
+        
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+        
+        .countdown-label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px){
+            .pengumuman-section { padding: 3rem 0; }
+            .accordion-button { font-size: 0.95rem; }
+            .syarat-list { font-size: 0.85rem; }
+            .countdown {
+                gap: 0.5rem;
             }
-            .openrec-title {
+            .countdown-item {
+                min-width: 60px;
+            }
+            .countdown-number {
                 font-size: 1.5rem;
-            }
-            .openrec-desc {
-                font-size: 1rem;
-            }
-            .openrec-benefit li {
-                font-size: 0.9rem;
             }
         }
     </style>
@@ -797,22 +1035,24 @@
                 MPK IC OKI
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#hero">Beranda</a>
-                    </li>
-                    <!-- Tambah menu Kabinet -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#kabinet">Kabinet</a>
+                        <a class="nav-link" href="#hero"><i class="fas fa-home me-1"></i> Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#divisi">Komisi</a>
+                        <a class="nav-link" href="#kabinet"><i class="fas fa-crown me-1"></i> Kabinet</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#open-recruitment">Pendaftaran</a>
+                        <a class="nav-link" href="#divisi"><i class="fas fa-users me-1"></i> Komisi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#kisi-kisi"><i class="fas fa-tasks me-1"></i> Tugas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact"><i class="fas fa-envelope me-1"></i> Kontak</a>
                     </li>
                 </ul>
             </div>
@@ -837,18 +1077,19 @@
                             Selamat Datang di
                         </h1>
                         <p class="hero-subtitle">
-                            Majelis Permusyawaratan Kelas MAN IC OKI
+                            Majelis Permusyawaratan Kelas
                         </p>
                         <p class="hero-description">
-                            Bersama membangun masa depan yang lebih baik untuk seluruh siswa. 
-                            Kami hadir sebagai jembatan aspirasi dan wadah kreativitas siswa IC OKI.
+                            Wadah aspirasi dan kreativitas siswa MAN Insan Cendekia OKI. 
+                            Kami hadir sebagai jembatan komunikasi antara siswa dengan pihak sekolah 
+                            untuk menciptakan lingkungan belajar yang lebih baik dan kondusif.
                         </p>
                         <div class="cta-buttons">
                             <a href="#divisi" class="btn-primary-custom">
-                                Komisi
+                                <i class="fas fa-arrow-right me-2"></i> Jelajahi Komisi
                             </a>
                             <a href="https://forms.gle/eQpoQv5HkvtQJ7sL6" target="blank" class="btn-outline-custom">
-                                Isi Angket Aspirasi
+                                <i class="fas fa-comment-dots me-2"></i> Sampaikan Aspirasi
                             </a>
                         </div>
                     </div>
@@ -869,9 +1110,11 @@
     </section>
 
     <!-- Section Kabinet Bhaskasura -->
-    <section class="kabinet-section py-5" id="kabinet">
+    <section class="section-container kabinet-section" id="kabinet">
         <div class="container">
-            <h2 class="text-center mb-4 section-title">Kabinet Arkhayasha Bhaskasura</h2>
+            <h2 class="section-title">Kabinet Arkhayasha Bhaskasura</h2>
+            <p class="section-subtitle">Sebuah perjalanan kepemimpinan yang menginspirasi dan mempersatukan</p>
+            
             <div class="row align-items-center">
                 <div class="col-lg-6 text-center mb-5 mb-lg-0">
                     <div class="kabinet-logo-container">
@@ -881,26 +1124,26 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="kabinet-content">
-                        <h3 class="kabinet-title">Makna Logo Kabinet Arkyasha Bhaskasura</h3>
+                        <h3 class="kabinet-title">Makna Logo Kabinet Arkhayasha Bhaskasura</h3>
                         <div class="kabinet-desc">
-                            <div class="symbol-item mb-3">
-                                <h5 class="symbol-title">Matahari Bersinar</h5>
-                                <p class="symbol-desc">Melambangkan semangat, pencerahan, dan kepemimpinan yang bersinar bagi seluruh anggota. "Bhaskasura" sendiri berasal dari kata "Bhaskara" (matahari), yang menegaskan peran sebagai penerang dan pengarah.</p>
+                            <div class="symbol-item mb-4">
+                                <h5 class="symbol-title"><i class="fas fa-sun"></i> Matahari Bersinar</h5>
+                                <p class="symbol-desc">Melambangkan semangat, pencerahan, dan kepemimpinan yang bersinar bagi seluruh anggota. "Bhaskasura" berasal dari kata "Bhaskara" (matahari), yang menegaskan peran sebagai penerang dan pengarah perjalanan organisasi.</p>
                             </div>
                             
-                            <div class="symbol-item mb-3">
-                                <h5 class="symbol-title">Perisai</h5>
-                                <p class="symbol-desc">Melambangkan perlindungan, kekuatan, dan integritas organisasi dalam menghadapi berbagai tantangan.</p>
+                            <div class="symbol-item mb-4">
+                                <h5 class="symbol-title"><i class="fas fa-shield-alt"></i> Perisai</h5>
+                                <p class="symbol-desc">Melambangkan perlindungan, kekuatan, dan integritas organisasi dalam menghadapi berbagai tantangan. Perisai menjadi simbol ketahanan dan kesiapan menghadapi segala rintangan.</p>
                             </div>
                             
-                            <div class="symbol-item mb-3">
-                                <h5 class="symbol-title">Padi Berlapis Emas</h5>
-                                <p class="symbol-desc">Simbol kemakmuran, kesejahteraan, serta hasil dari kerja keras bersama seluruh elemen organisasi. Padi juga mencerminkan persatuan dan gotong royong.</p>
+                            <div class="symbol-item mb-4">
+                                <h5 class="symbol-title"><i class="fas fa-wheat-alt"></i> Padi Berlapis Emas</h5>
+                                <p class="symbol-desc">Simbol kemakmuran, kesejahteraan, serta hasil dari kerja keras bersama seluruh elemen organisasi. Padi juga mencerminkan persatuan, gotong royong, dan kemandirian.</p>
                             </div>
                             
                             <div class="symbol-item">
-                                <h5 class="symbol-title">Lima Bintang</h5>
-                                <p class="symbol-desc">Melambangkan 5 Komisi MPK serta nilai-nilai dasar yang menjadi fondasi organisasi, seperti integritas, tanggung jawab, solidaritas, profesionalitas, dan inovasi.</p>
+                                <h5 class="symbol-title"><i class="fas fa-star"></i> Lima Bintang</h5>
+                                <p class="symbol-desc">Melambangkan 5 Komisi MPK serta nilai-nilai dasar yang menjadi fondasi organisasi: integritas, tanggung jawab, solidaritas, profesionalitas, dan inovasi.</p>
                             </div>
                         </div>
                     </div>
@@ -910,7 +1153,7 @@
                 <div class="col-12">
                     <div class="kabinet-motto text-center p-4 rounded-4">
                         <h4 class="motto-text">"Burning With Fire, Shining With Glory"</h4>
-                        <p class="motto-desc mt-3">Kabinet Arkhayasha Bhaskasura hadir sebagai wadah pengembangan potensi siswa dan jembatan aspirasi antara siswa dengan pihak sekolah.</p>
+                        <p class="motto-desc mt-3">Kabinet Arkhayasha Bhaskasura hadir sebagai wadah pengembangan potensi siswa dan jembatan aspirasi antara siswa dengan pihak sekolah. Kami berkomitmen menciptakan lingkungan belajar yang inspiratif dan kondusif bagi seluruh siswa MAN IC OKI.</p>
                     </div>
                 </div>
             </div>
@@ -925,27 +1168,27 @@
             <ul class="nav nav-tabs justify-content-center mb-4 divisi-tabs" id="divisiTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="divisi1-tab" data-bs-toggle="tab" data-bs-target="#divisi1" type="button" role="tab" aria-controls="divisi1" aria-selected="true">
-                        BPH
+                        <i class="fas fa-users-cog me-2"></i> BPH
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="divisi2-tab" data-bs-toggle="tab" data-bs-target="#divisi2" type="button" role="tab" aria-controls="divisi2" aria-selected="false">
-                        Kominfo
+                        <i class="fas fa-globe me-2"></i> Kominfo
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="divisi3-tab" data-bs-toggle="tab" data-bs-target="#divisi3" type="button" role="tab" aria-controls="divisi3" aria-selected="false">
-                        Aspirasi
+                        <i class="fas fa-bullhorn me-2"></i> Aspirasi
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="divisi4-tab" data-bs-toggle="tab" data-bs-target="#divisi4" type="button" role="tab" aria-controls="divisi4" aria-selected="false">
-                        Advokasi
+                        <i class="fas fa-gavel me-2"></i> Advokasi
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="divisi5-tab" data-bs-toggle="tab" data-bs-target="#divisi5" type="button" role="tab" aria-controls="divisi5" aria-selected="false">
-                        Legislasi 
+                        <i class="fas fa-balance-scale me-2"></i> Legislasi 
                     </button>
                 </li>
             </ul>
@@ -1322,62 +1565,202 @@
         </div>
     </section>
 
-    <!-- Section Open Recruitment -->
-    <section class="open-recruitment-section py-5" id="open-recruitment">
+    <!-- Section Pengumuman Persyaratan per Komisi -->
+    <section class="pengumuman-section" id="kisi-kisi">
         <div class="container">
-            <h2 class="text-center mb-4 section-title">Open Recruitment MPK</h2>
-            <div class="row justify-content-center align-items-center">
-                <div class="col-lg-7">
-                    <div class="openrec-card p-4 rounded-4 mb-4 mb-lg-0 shadow-lg">
-                        <h3 class="openrec-title mb-3">Bergabunglah Bersama Kami!</h3>
-                        <p class="openrec-desc mb-3">
-                            MPK MAN IC OKI membuka kesempatan bagi siswa-siswi terbaik untuk menjadi bagian dari keluarga besar MPK.
-                            Jadilah agen perubahan, penyalur aspirasi, dan pelopor kegiatan positif di lingkungan sekolah!
-                        </p>
-                        <ul class="openrec-benefit mb-4">
-                            <li>Pengalaman organisasi & kepemimpinan</li>
-                            <li>Relasi & networking antar siswa</li>
-                            <li>Pengembangan softskill & teamwork</li>
-                            <li>Kontribusi nyata untuk sekolah</li>
-                        </ul>
-                        <div class="text-center mt-4">
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdbSkwNpqiDdxEEovnet5HTmWy_Z1mDjdgsiRf6U-fupZZbkA/viewform?usp=header" target="blank" class="btn-unduh-formulir">
-                                Daftar Sekarang
-                            </a>
-                        </div>
+            <h2 class="section-title">Tugas Seleksi Awal (Assessment Potensi)</h2>
+            <p class="subtitle-pengumuman">Tugas berikut dirancang untuk melihat kompetensi awal calon anggota. Silakan kerjakan sesuai <strong>komisi yang dipilih</strong>. Jika memilih lebih dari satu komisi, Anda harus mengerjakan tugas di setiap komisi terkait.</p>
+            
+            <div class="countdown-container">
+                <div class="countdown-title">Waktu Tersisa Menuju Deadline Pengumpulan:</div>
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-label">Hari</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-label">Jam</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-label">Menit</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">Detik</div>
                     </div>
                 </div>
-                <div class="col-lg-5 text-center">
-                    <div class="openrec-komisi-logos position-relative d-inline-block mb-3" style="width: 420px; height: 420px;">
-                        <!-- BPH di tengah -->
-                        <img src="img/BPH.png" alt="BPH" class="openrec-komisi-logo center-logo" style="position:absolute;left:50%;top:50%;width:160px;height:160px;transform:translate(-50%,-50%);z-index:2;">
-                        <!-- Kominfo atas -->
-                        <img src="img/komin.png" alt="Kominfo" class="openrec-komisi-logo" style="position:absolute;left:50%;top:30px;width:120px;height:120px;transform:translateX(-50%);z-index:1;">
-                        <!-- Aspirasi kanan atas -->
-                        <img src="img/aspi.png" alt="Aspirasi" class="openrec-komisi-logo" style="position:absolute;left:340px;top:100px;width:120px;height:120px;z-index:1;">
-                        <!-- Advokasi kanan bawah -->
-                        <img src="img/advo.png" alt="Advokasi" class="openrec-komisi-logo" style="position:absolute;left:270px;top:300px;width:120px;height:120px;z-index:1;">
-                        <!-- Legislasi kiri bawah -->
-                        <img src="img/legis.png" alt="Legislasi" class="openrec-komisi-logo" style="position:absolute;left:30px;top:300px;width:120px;height:120px;z-index:1;">
-                        <!-- BPH bayangan/keseimbangan kiri atas (kosong/opacity 0) -->
-                        <img src="img/BPH.png" alt="BPH Bayangan" class="openrec-komisi-logo" style="position:absolute;left:-20px;top:100px;width:120px;height:120px;z-index:1;opacity:0;">
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="pengumuman-card mb-4">
+                        <h5 class="fw-bold mb-3" style="background:linear-gradient(90deg,var(--primary),var(--secondary));background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+                            <i class="fas fa-info-circle me-2"></i> Petunjuk Umum Pengumpulan
+                        </h5>
+                        <ul class="syarat-list">
+                            <li>Format pengumpulan: unggah ke Google Drive pribadi (akses Anyone with link - Viewer).</li>
+                            <li>Buat folder: MPK25_NamaLengkap_Kelas (contoh: MPK25_AisyahNurF_X1).</li>
+                            <li>Di dalam folder buat subfolder per komisi (BPH / KOMINFO / ASPIRASI / ADVOKASI / LEGISLASI) sesuai yang dikerjakan.</li>
+                            <li>Setiap file diberi awalan: [Komisi] - [Jenis Tugas] - [Nama]. Contoh: KOMINFO - Feed 1 - Aisyah.png</li>
+                            <li>Dokumen teks gunakan PDF (bukan .docx). Spreadsheet boleh .xlsx atau .csv. Desain kirim .png (1080px sisi terpanjang) + 1 file .pdf rangkuman konsep.</li>
+                            <li>Tugas bertanda (Opsional) tidak wajib namun menambah nilai.</li>
+                            <li>Pastikan seluruh materi orisinal. Plagiarisme = Diskualifikasi.</li>
+                        </ul>
+                        <p class="mb-1 small text-secondary">Deadline pengumpulan: <strong>15 November 2025 pukul 23.59 WIB</strong><br> Link pengumpulan form: (akan dibagikan panitia). Simpan dulu tautan Drive Anda.</p>
+                    </div>
+
+                    <div class="accordion" id="kisiKomisi">
+                        <!-- BPH -->
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="assBPHHead">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#assBPH" aria-expanded="true" aria-controls="assBPH">
+                                    <i class="fas fa-users-cog me-2"></i> BPH (Badan Pengurus Harian)
+                                </button>
+                            </h2>
+                            <div id="assBPH" class="accordion-collapse collapse" aria-labelledby="assBPHHead" data-bs-parent="#kisiKomisi">
+                                <div class="accordion-body">
+                                    <p class="small text-secondary mb-0">Belum ada pemberitahuan lebih lanjut.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- KOMINFO -->
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="assKominfoHead">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#assKominfo" aria-expanded="false" aria-controls="assKominfo">
+                                    <i class="fas fa-globe me-2"></i> Komisi Informasi
+                                </button>
+                            </h2>
+                            <div id="assKominfo" class="accordion-collapse collapse show" aria-labelledby="assKominfoHead" data-bs-parent="#kisiKomisi">
+                                <div class="accordion-body">
+                                    <ul class="syarat-list">
+                                        <li><strong>Tugas 1 (Wajib):</strong> Desain feed Instagram (ukuran 1080x4050) tema: "Kenapa MPK Penting?" atau "Peran MPK di Sekolah". Harus konsisten tipografi & warna. Sertakan caption (maks 120 kata) tiap desain di upload di akun instagram masing-masing, cukup kumpulkan username.</li>
+                                        <li><strong>Tugas 2 (Wajib):</strong> Rangkumkan tentang tanggal peringatan hari-hari penting yang biasanya di peringati di akun sosial MPK dan dikumpulkan dalam bentuk Excel.</li>
+                                        <li><strong>Tugas 3 (Opsional):</strong> Rangkumkan tugas-tugas tiap komisi MPK dalam bentuk excel</li>
+                                    </ul>
+                                    <p class="small text-secondary mb-0">Penilaian: Konsistensi branding, daya tarik visual, kejelasan pesan.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ASPIRASI -->
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="assAspirasiHead">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assAspirasi" aria-expanded="false" aria-controls="assAspirasi">
+                                    <i class="fas fa-microphone me-2"></i> Komisi Aspirasi
+                                </button>
+                            </h2>
+                            <div id="assAspirasi" class="accordion-collapse collapse" aria-labelledby="assAspirasiHead" data-bs-parent="#kisiKomisi">
+                                <div class="accordion-body">
+                                    <p class="small text-secondary mb-0">Belum ada pemberitahuan lebih lanjut.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ADVOKASI -->
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="assAdvokasiHead">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assAdvokasi" aria-expanded="false" aria-controls="assAdvokasi">
+                                    <i class="fas fa-gavel me-2"></i> Komisi Advokasi
+                                </button>
+                            </h2>
+                            <div id="assAdvokasi" class="accordion-collapse collapse" aria-labelledby="assAdvokasiHead" data-bs-parent="#kisiKomisi">
+                                <div class="accordion-body">
+                                    <p class="small text-secondary mb-0">Belum ada pemberitahuan lebih lanjut.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- LEGISLASI -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="assLegislasiHead">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assLegislasi" aria-expanded="false" aria-controls="assLegislasi">
+                                    <i class="fas fa-balance-scale me-2"></i> Komisi Legislasi
+                                </button>
+                            </h2>
+                            <div id="assLegislasi" class="accordion-collapse collapse" aria-labelledby="assLegislasiHead" data-bs-parent="#kisiKomisi">
+                                <div class="accordion-body">
+                                    <p class="small text-secondary mb-0">Belum ada pemberitahuan lebih lanjut.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-5">
+                        <p class="small text-secondary mb-1">Kerjakan sebaik mungkin sesuai minat dan komitmen.</p>
+                        <p class="small text-secondary mb-0">Simpan tautan Drive Anda. Form pengumpulan akan diumumkan.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Contact Section -->
+    <section class="section-container" id="contact">
+        <div class="container">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <p class="section-subtitle">MPK siap mendengar aspirasi, saran, dan kritik membangun dari seluruh siswa MAN IC OKI</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="pengumuman-card">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="fw-bold mb-4" style="background:linear-gradient(90deg,var(--primary),var(--secondary));background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+                                    <i class="fas fa-paper-plane me-2"></i> Media Sosial
+                                </h5>
+                                <p>Ikuti akun media sosial MPK untuk informasi terbaru tentang kegiatan dan program kerja:</p>
+                                
+                                <div class="social-links justify-content-start">
+                                    <a href="https://www.instagram.com/mpk.icoki/" class="social-link"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <h5 class="fw-bold mb-4" style="background:linear-gradient(90deg,var(--primary),var(--secondary));background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+                                    <i class="fas fa-envelope me-2"></i> Kotak Aspirasi
+                                </h5>
+                                <p>Sampaikan aspirasi, keluhan, atau saran Anda melalui:</p>
+                                <ul class="syarat-list">
+                                    <li>Formulir online melalui website</li>
+                                    <li>Email: mpkmanicoki@gmail.com</li>
+                                </ul>
+                                
+                                <a href="https://forms.gle/eQpoQv5HkvtQJ7sL6" target="blank" class="btn-primary-custom mt-3">
+                                    <i class="fas fa-edit me-2"></i> Isi Form Aspirasi
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 MPK MAN IC OKI. All rights reserved.</p>
-            <p></p>
+            <img src="assets/img/mpk.png" alt="MPK Logo" class="footer-logo">
+            <h4 class="footer-title">MPK MAN IC OKI</h4>
+            <p>Majelis Permusyawaratan Kelas<br>MAN Insan Cendekia Ogan Komering Ilir</p>
+            
+            <div class="social-links">
+                <a href="https://www.instagram.com/mpk.icoki/" class="social-link"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 MPK MAN IC OKI. All rights reserved.
+            </div>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
-<script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
         // Smooth scrolling untuk anchor links
@@ -1434,12 +1817,69 @@
                 navbar.style.boxShadow = '0 4px 24px 0 rgba(120,119,198,0.10), 0 1.5px 0 0 #7877c6';
             }
         });
+
+        // Back to top button
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Countdown timer
+        function updateCountdown() {
+            const deadline = new Date('September 17, 2025 23:59:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = deadline - now;
+            
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+
+        // Animasi saat elemen masuk viewport
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.timeline-item, .pengumuman-card, .divisi-tab-content');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = 1;
+                    element.style.transform = 'translateY(0)';
+                    element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                }
+            });
+        };
+        
+        // Set initial state for animated elements
+        document.querySelectorAll('.timeline-item, .pengumuman-card, .divisi-tab-content').forEach(element => {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(20px)';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        // Trigger once on load
+        window.addEventListener('load', animateOnScroll);
     </script>
 </body>
-
 </html>
-
-
-
-
-
