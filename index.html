@@ -807,7 +807,6 @@
             margin-top: 2rem;
             padding-top: 1.5rem;
             border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
         }
 
         /* Open Recruitment Section */
@@ -1010,6 +1009,11 @@
             margin-top: 0.5rem;
         }
 
+        @keyframes pulseExtra {
+            0% { box-shadow:0 2px 16px rgba(255,119,198,0.25); }
+            100% { box-shadow:0 6px 32px rgba(255,119,198,0.45); }
+        }
+
         @media (max-width: 768px){
             .pengumuman-section { padding: 3rem 0; }
             .accordion-button { font-size: 0.95rem; }
@@ -1027,6 +1031,41 @@
     </style>
 </head>
 <body>
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" style="
+        position:fixed;
+        top:0;left:0;width:100vw;height:100vh;
+        background:rgba(20,20,40,0.95);
+        z-index:99999;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        transition:opacity 0.5s;
+    ">
+        <div style="text-align:center;">
+            <div style="
+                width:64px;height:64px;
+                border:6px solid #7877c6;
+                border-top:6px solid #ff77c6;
+                border-radius:50%;
+                margin:0 auto 18px auto;
+                animation:spinLoader 1s linear infinite;
+            "></div>
+            <div style="color:#fff;font-size:1.2rem;font-weight:600;letter-spacing:1px;">
+                Memuat halaman...
+            </div>
+        </div>
+    </div>
+    <style>
+        @keyframes spinLoader {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(360deg);}
+        }
+        #loading-overlay.hide {
+            opacity:0;
+            pointer-events:none;
+        }
+    </style>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
         <div class="container-fluid">
@@ -1050,6 +1089,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#kisi-kisi"><i class="fas fa-tasks me-1"></i> Tugas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#reshuffle"><i class="fas fa-bullhorn me-1"></i> Pengumuman</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contact"><i class="fas fa-envelope me-1"></i> Kontak</a>
@@ -1202,25 +1244,19 @@
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <div class="d-flex justify-content-center gap-4 flex-wrap">
-                                            <div class="anggota-card">
-                                                <img src="img/ketua.webp" class="anggota-img-wide" alt="Ketua MPK - M. Sheva Zuhra">
-                                                <div class="anggota-caption">
-                                                    <h5>M. Sheva Zuhra</h5>
-                                                    <p>Ketua Umum</p>
-                                                </div>
-                                            </div>
+                                            <!-- Hapus Sheva Zuhra dari BPH -->
                                             <div class="anggota-card">
                                                 <img src="img/wakil.webp" class="anggota-img-wide" alt="Wakil Ketua - Zainal Abidin">
                                                 <div class="anggota-caption">
                                                     <h5>Zainal Abidin</h5>
-                                                    <p>Wakil Ketua</p>
+                                                    <p>Ketua Umum</p>
                                                 </div>
                                             </div>
                                             <div class="anggota-card">
                                                 <img src="img/sekre1.webp" class="anggota-img-wide" alt="Sekretaris I - Farras Adzkia Azzahra">
                                                 <div class="anggota-caption">
                                                     <h5>Farras Adzkia Azzahra</h5>
-                                                    <p>Sekretaris I</p>
+                                                    <p>Wakil Ketua</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1357,25 +1393,12 @@
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <div class="d-flex justify-content-center gap-4 flex-wrap">
-                                            <div class="anggota-card">
-                                                <img src="img/kooraspi.webp" class="anggota-img-wide" alt="Koordinator Aspirasi - Fauzan Rafi Azhar">
-                                                <div class="anggota-caption">
-                                                    <h5>Fauzan Rafi Azhar</h5>
-                                                    <p>Koordinator</p>
-                                                </div>
-                                            </div>
+                                            <!-- Hapus Fauzan Rafi Azhar dan Muhammad Abyan Farras dari Aspirasi -->
                                             <div class="anggota-card">
                                                 <img src="img/aspi2.webp" class="anggota-img-wide" alt="Wakil Koordinator Aspirasi - Luqman Hakim">
                                                 <div class="anggota-caption">
                                                     <h5>Luqman Hakim</h5>
-                                                    <p>Wakil Koordinator</p>
-                                                </div>
-                                            </div>
-                                            <div class="anggota-card">
-                                                <img src="img/aspi3.webp" class="anggota-img-wide" alt="Anggota Aspirasi - Muhammad Abyan Farras">
-                                                <div class="anggota-caption">
-                                                    <h5>Muhammad Abyan Farras</h5>
-                                                    <p>Anggota</p>
+                                                    <p>Koordinator</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1506,6 +1529,7 @@
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <div class="d-flex justify-content-center gap-4 flex-wrap">
+                                            <!-- Hapus Marchel Aditia dari Legislasi -->
                                             <div class="anggota-card">
                                                 <img src="img/legis1.webp" class="anggota-img-wide" alt="Koordinator Legislasi - Aisyah Nur F.">
                                                 <div class="anggota-caption">
@@ -1518,13 +1542,6 @@
                                                 <div class="anggota-caption">
                                                     <h5>Albania Kamal</h5>
                                                     <p>Wakil Koordinator</p>
-                                                </div>
-                                            </div>
-                                            <div class="anggota-card">
-                                                <img src="img/legis3.webp" class="anggota-img-wide" alt="Anggota Legislasi - Marchel Aditia">
-                                                <div class="anggota-caption">
-                                                    <h5>Marchel Aditia</h5>
-                                                    <p>Anggota</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1567,12 +1584,32 @@
 
     <!-- Section Pengumuman Persyaratan per Komisi -->
     <section class="pengumuman-section" id="kisi-kisi">
-        <div class="container">
+        <div class="container" id="pengumuman-container">
             <h2 class="section-title">Tugas Seleksi Awal (Assessment Potensi)</h2>
             <p class="subtitle-pengumuman">Tugas berikut dirancang untuk melihat kompetensi awal calon anggota. Silakan kerjakan sesuai <strong>komisi yang dipilih</strong>. Jika memilih lebih dari satu komisi, Anda harus mengerjakan tugas di setiap komisi terkait.</p>
             
-            <div class="countdown-container">
-                <div class="countdown-title">Waktu Tersisa Menuju Deadline Pengumpulan:</div>
+            <div class="countdown-container" id="countdown-container">
+                <div class="countdown-title" id="countdown-title">Waktu Tersisa Menuju Deadline Pengumpulan:</div>
+                <!-- Tambahan visual waktu tambahan -->
+                <div id="extra-time-banner" style="display:none; margin-bottom:1rem;">
+                    <div style="
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        gap:12px;
+                        background:linear-gradient(90deg,#ff77c6,#7877c6);
+                        color:#fff;
+                        font-weight:700;
+                        font-size:1.15rem;
+                        border-radius:12px;
+                        padding:0.7rem 1.2rem;
+                        box-shadow:0 2px 16px rgba(120,119,198,0.13);
+                        animation: pulseExtra 1.2s infinite alternate;
+                    ">
+                        <i class="fas fa-exclamation-triangle" style="font-size:1.5rem;"></i>
+                        <span id="extra-time-text">WAKTU TAMBAHAN 1 HARI!</span>
+                    </div>
+                </div>
                 <div class="countdown">
                     <div class="countdown-item">
                         <div class="countdown-number" id="days">00</div>
@@ -1662,7 +1699,7 @@
                                     <i class="fas fa-gavel me-2"></i> Komisi Advokasi
                                 </button>
                             </h2>
-                            <div id="assAdvokasi" class="accordion-collapse collapse" aria-labelledby="assAdvokasiHead" data-bs-parent="#kisiKomisi">
+                                                       <div id="assAdvokasi" class="accordion-collapse collapse" aria-labelledby="assAdvokasiHead" data-bs-parent="#kisiKomisi">
                                 <div class="accordion-body">
                                     <p class="small text-secondary mb-0">Belum ada pemberitahuan lebih lanjut.</p>
                                 </div>
@@ -1686,6 +1723,61 @@
                     <div class="text-center mt-5">
                         <p class="small text-secondary mb-1">Kerjakan sebaik mungkin sesuai minat dan komitmen.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Reshuffle Anggota -->
+    <section class="pengumuman-section" id="reshuffle">
+        <div class="container">
+            <h2 class="section-title" style="font-size:2.3rem;">
+                Penghormatan Anggota MPK yang Gugur
+            </h2>
+            <p class="section-subtitle mb-4" style="font-size:1.15rem;">
+                Kami persembahkan penghormatan setinggi-tingginya kepada para anggota yang telah berjuang dan berkontribusi untuk MPK. Mereka adalah pahlawan yang telah menorehkan jejak perjuangan, meski kini telah gugur dari keanggotaan.
+            </p>
+            <div class="pengumuman-card" style="max-width:800px;margin:3rem auto;box-shadow:0 8px 32px #ff77c6a0;border:2px solid #ff77c6;">
+                <div class="row justify-content-center g-4">
+                    <div class="col-6 col-md-3 text-center">
+                        <div style="position:relative;">
+                            <img src="img/ketua.webp" alt="Sheva Zuhra" class="anggota-img-wide" style="border:5px solid #ff77c6;box-shadow:0 8px 32px #ff77c6a0;filter:grayscale(0.3);">
+                            <span style="display:block;font-weight:700;color:#ff77c6;margin-top:0.7rem;font-size:1.1rem;">Sheva Zuhra</span>
+                            <span style="color:#ccc;font-size:0.95rem;">Ketua</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 text-center">
+                        <div style="position:relative;">
+                            <img src="img/legis3.webp" alt="Marchel Aditia" class="anggota-img-wide" style="border:5px solid #ff77c6;box-shadow:0 8px 32px #ff77c6a0;filter:grayscale(0.3);">
+                            <span style="display:block;font-weight:700;color:#ff77c6;margin-top:0.7rem;font-size:1.1rem;">Marchel Aditia</span>
+                            <span style="color:#ccc;font-size:0.95rem;">Anggota</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 text-center">
+                        <div style="position:relative;">
+                            <img src="img/kooraspi.webp" alt="Fauzan Rafi" class="anggota-img-wide" style="border:5px solid #ff77c6;box-shadow:0 8px 32px #ff77c6a0;filter:grayscale(0.3);">
+                            <span style="display:block;font-weight:700;color:#ff77c6;margin-top:0.7rem;font-size:1.1rem;">Fauzan Rafi</span>
+                            <span style="color:#ccc;font-size:0.95rem;">Koordinator</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 text-center">
+                        <div style="position:relative;">
+                            <img src="img/aspi3.webp" alt="Abyan Farras" class="anggota-img-wide" style="border:5px solid #ff77c6;box-shadow:0 8px 32px #ff77c6a0;filter:grayscale(0.3);">
+                            <span style="display:block;font-weight:700;color:#ff77c6;margin-top:0.7rem;font-size:1.1rem;">Abyan Farras</span>
+                            <span style="color:#ccc;font-size:0.95rem;">Anggota</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 text-center" style="color:#ff77c6;font-size:1.2rem;font-weight:600;">
+                    <i class="fas fa-medal"></i> Terima kasih atas dedikasi dan perjuangan kalian. Nama kalian akan selalu dikenang sebagai pejuang MPK.
+                </div>
+                <div class="mt-4 text-center" style="font-size:1.15rem;color:#fff;font-style:italic;">
+                    <i class="fas fa-quote-left"></i>
+                    "Pahlawan bukanlah mereka yang tidak pernah gagal, tetapi mereka yang tidak pernah menyerah untuk berjuang."
+                    <i class="fas fa-quote-right"></i>
+                </div>
+                <div class="mt-3 text-center" style="color:#ff77c6;font-size:1.05rem;">
+                    <i class="fas fa-info-circle"></i> Keputusan reshuffle dilakukan sesuai hasil evaluasi dan kebijakan MPK.
                 </div>
             </div>
         </div>
@@ -1802,6 +1894,15 @@
                     wrap: true
                 });
             });
+
+            // Hide loading overlay with minimal delay
+            const overlay = document.getElementById('loading-overlay');
+            if (overlay) {
+                setTimeout(() => {
+                    overlay.classList.add('hide');
+                    setTimeout(() => { overlay.style.display = 'none'; }, 600);
+                }, 500); // Tambahkan delay 500ms agar overlay terlihat
+            }
         });
 
         // Efek transparansi navbar saat scroll
@@ -1832,24 +1933,60 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Countdown timer
+        // Countdown timer dengan waktu tambahan & transisi section
         function updateCountdown() {
             const deadline = new Date('September 18, 2025 23:59:00').getTime();
             const now = new Date().getTime();
             const timeLeft = deadline - now;
-            
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-            
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+            const countdownTitle = document.getElementById('countdown-title');
+            const countdownContainer = document.getElementById('countdown-container');
+            const pengumumanSection = document.getElementById('pengumuman-container');
+            const thankyouSection = document.getElementById('thankyou-section');
+            const extraTimeBanner = document.getElementById('extra-time-banner');
+
+            // State: sebelum deadline utama
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                countdownTitle.textContent = 'Waktu Tersisa Menuju Deadline Pengumpulan:';
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+                countdownContainer.style.display = '';
+                pengumumanSection.parentElement.style.display = '';
+                thankyouSection.style.display = 'none';
+                extraTimeBanner.style.display = 'none';
+            }
+            // State: waktu tambahan 1 hari
+            else if (timeLeft <= 0 && now < deadline + 24 * 60 * 60 * 1000) {
+                const extraTimeLeft = deadline + 24 * 60 * 60 * 1000 - now;
+                const days = Math.floor(extraTimeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((extraTimeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((extraTimeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((extraTimeLeft % (1000 * 60)) / 1000);
+
+                countdownTitle.textContent = 'Waktu tambahan 1 hari diberikan! Segera selesaikan tugas Anda:';
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+                countdownContainer.style.display = '';
+                pengumumanSection.parentElement.style.display = '';
+                thankyouSection.style.display = 'none';
+                extraTimeBanner.style.display = '';
+            }
+            // State: selesai, tampilkan ucapan terima kasih
+            else {
+                pengumumanSection.parentElement.style.display = 'none';
+                thankyouSection.style.display = '';
+            }
         }
-        
-        // Update countdown every second
+
         setInterval(updateCountdown, 1000);
         updateCountdown(); // Initial call
 
@@ -1879,9 +2016,10 @@
         // Trigger once on load
         window.addEventListener('load', animateOnScroll);
     </script>
+
+
 </body>
 </html>
-
 
 
 
