@@ -8,6 +8,7 @@
     <link rel="icon" href="img/mpk.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
             --primary: #7877c6;
@@ -266,7 +267,6 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 1.5rem;
             line-height: 1.1;
-            animation: slideInUp 1s ease-out;
         }
 
         .hero-subtitle {
@@ -274,7 +274,6 @@
             color: rgba(255, 255, 255, 0.9);
             font-weight: 300;
             margin-bottom: 2rem;
-            animation: slideInUp 1s ease-out 0.2s both;
         }
 
         .hero-description {
@@ -283,14 +282,12 @@
             line-height: 1.6;
             margin-bottom: 3rem;
             max-width: 500px;
-            animation: slideInUp 1s ease-out 0.4s both;
         }
 
         .cta-buttons {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
-            animation: slideInUp 1s ease-out 0.6s both;
         }
 
         .btn-primary-custom {
@@ -365,7 +362,6 @@
             width: clamp(200px, 30vw, 400px);
             height: auto;
             filter: drop-shadow(0 0 30px rgba(120, 119, 198, 0.6));
-            animation: logoFloat 3s ease-in-out infinite, slideInRight 1s ease-out;
         }
 
         .logo-glow {
@@ -395,26 +391,15 @@
         .particle:nth-child(3) { top: 40%; left: 80%; animation-delay: 4s; }
         .particle:nth-child(4) { top: 80%; left: 70%; animation-delay: 6s; }
 
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        @keyframes float {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
         }
 
         @keyframes logoFloat {
@@ -491,7 +476,6 @@
             width: clamp(200px, 28vw, 320px);
             height: auto;
             filter: drop-shadow(0 0 30px rgba(120, 119, 198, 0.6));
-            animation: logoFloat 3s ease-in-out infinite, slideInRight 1s ease-out;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             box-shadow: 0 0 48px 0 rgba(120,119,198,0.30), 0 8px 32px rgba(255,119,198,0.10);
@@ -963,52 +947,6 @@
             box-shadow: 0 6px 25px rgba(120, 119, 198, 0.5);
         }
 
-        /* Countdown Timer */
-        .countdown-container {
-            background: rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin: 2rem auto;
-            max-width: 600px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .countdown-title {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-        }
-        
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-        
-        .countdown-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 70px;
-        }
-        
-        .countdown-number {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1;
-        }
-        
-        .countdown-label {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.7);
-            margin-top: 0.5rem;
-        }
-
         @keyframes pulseExtra {
             0% { box-shadow:0 2px 16px rgba(255,119,198,0.25); }
             100% { box-shadow:0 6px 32px rgba(255,119,198,0.45); }
@@ -1018,15 +956,6 @@
             .pengumuman-section { padding: 3rem 0; }
             .accordion-button { font-size: 0.95rem; }
             .syarat-list { font-size: 0.85rem; }
-            .countdown {
-                gap: 0.5rem;
-            }
-            .countdown-item {
-                min-width: 60px;
-            }
-            .countdown-number {
-                font-size: 1.5rem;
-            }
         }
     </style>
 </head>
@@ -1088,9 +1017,6 @@
                         <a class="nav-link" href="#divisi"><i class="fas fa-users me-1"></i> Komisi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#kisi-kisi"><i class="fas fa-tasks me-1"></i> Tugas</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="#reshuffle"><i class="fas fa-bullhorn me-1"></i> Pengumuman</a>
                     </li>
                     <li class="nav-item">
@@ -1114,7 +1040,7 @@
         <div class="container hero-content">
             <div class="row align-items-center min-vh-100">
                 <div class="col-lg-6 col-md-12">
-                    <div class="hero-text-content">
+                    <div class="hero-text-content" data-aos="fade-right" data-aos-duration="1000">
                         <h1 class="hero-title">
                             Selamat Datang di
                         </h1>
@@ -1136,7 +1062,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-12">
+                <div class="col-lg-6 col-md-12" data-aos="fade-left" data-aos-duration="1000">
                     <div class="hero-logo-container">
                         <div class="logo-glow"></div>
                         <img src="assets/img/mpk.png" alt="Logo MPK IC OKI" class="hero-logo" width="400" height="400">
@@ -1152,19 +1078,19 @@
     </section>
 
     <!-- Section Kabinet Bhaskasura -->
-    <section class="section-container kabinet-section" id="kabinet">
-        <div class="container">
+    <section class="section-container kabinet-section"   id="kabinet">
+        <div class="container" data-aos="fade-up" data-aos-duration="1000">
             <h2 class="section-title">Kabinet Arkhayasha Bhaskasura</h2>
             <p class="section-subtitle">Sebuah perjalanan kepemimpinan yang menginspirasi dan mempersatukan</p>
             
             <div class="row align-items-center">
-                <div class="col-lg-6 text-center mb-5 mb-lg-0">
+                <div class="col-lg-6 text-center mb-5 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
                     <div class="kabinet-logo-container">
                         <div class="logo-glow-kabinet"></div>
                         <img src="img/kabinet.png" alt="Logo Kabinet Bhaskasura" class="kabinet-logo">
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
                     <div class="kabinet-content">
                         <h3 class="kabinet-title">Makna Logo Kabinet Arkhayasha Bhaskasura</h3>
                         <div class="kabinet-desc">
@@ -1193,7 +1119,7 @@
             </div>
             <div class="row mt-5">
                 <div class="col-12">
-                    <div class="kabinet-motto text-center p-4 rounded-4">
+                    <div class="kabinet-motto text-center p-4 rounded-4" data-aos="zoom-in" data-aos-duration="1000">
                         <h4 class="motto-text">"Burning With Fire, Shining With Glory"</h4>
                         <p class="motto-desc mt-3">Kabinet Arkhayasha Bhaskasura hadir sebagai wadah pengembangan potensi siswa dan jembatan aspirasi antara siswa dengan pihak sekolah. Kami berkomitmen menciptakan lingkungan belajar yang inspiratif dan kondusif bagi seluruh siswa MAN IC OKI.</p>
                     </div>
@@ -1205,7 +1131,7 @@
     
     <!-- Section Divisi MPK -->
     <section class="divisi-section py-5" id="divisi">
-        <div class="container">
+        <div class="container" data-aos="fade-up" data-aos-duration="1000">
             <h2 class="text-center mb-4 section-title">Komisi MPK MAN IC OKI</h2>
             <ul class="nav nav-tabs justify-content-center mb-4 divisi-tabs" id="divisiTab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -1583,201 +1509,24 @@
     </section>
 
     <!-- Section Pengumuman Persyaratan per Komisi -->
-    <section class="pengumuman-section" id="kisi-kisi">
-        <div class="container" id="pengumuman-container">
-            <h2 class="section-title">Tugas Seleksi Awal (Assessment Potensi)</h2>
-            <p class="subtitle-pengumuman">Tugas berikut dirancang untuk melihat kompetensi awal calon anggota. Silakan kerjakan sesuai <strong>komisi yang dipilih</strong>. Jika memilih lebih dari satu komisi, Anda harus mengerjakan tugas di setiap komisi terkait.</p>
-            
-            <div class="countdown-container" id="countdown-container">
-                <div class="countdown-title" id="countdown-title">Waktu Tersisa Menuju Deadline Pengumpulan:</div>
-                <!-- Tambahan visual waktu tambahan -->
-                <div id="extra-time-banner" style="display:none; margin-bottom:1rem;">
-                    <div style="
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        gap:12px;
-                        background:linear-gradient(90deg,#ff77c6,#7877c6);
-                        color:#fff;
-                        font-weight:700;
-                        font-size:1.15rem;
-                        border-radius:12px;
-                        padding:0.7rem 1.2rem;
-                        box-shadow:0 2px 16px rgba(120,119,198,0.13);
-                        animation: pulseExtra 1.2s infinite alternate;
-                    ">
-                        <i class="fas fa-exclamation-triangle" style="font-size:1.5rem;"></i>
-                        <span id="extra-time-text">WAKTU TAMBAHAN 1 HARI!</span>
-                    </div>
-                </div>
-                <div class="countdown">
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="days">00</div>
-                        <div class="countdown-label">Hari</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="hours">00</div>
-                        <div class="countdown-label">Jam</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="minutes">00</div>
-                        <div class="countdown-label">Menit</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="seconds">00</div>
-                        <div class="countdown-label">Detik</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="pengumuman-card mb-4">
-                        <h5 class="fw-bold mb-3" style="background:linear-gradient(90deg,var(--primary),var(--secondary));background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
-                            <i class="fas fa-info-circle me-2"></i> Petunjuk Umum Pengumpulan
-                        </h5>
-                        <ul class="syarat-list">
-                            <li>Format pengumpulan: unggah ke Google Drive yang telah disediakan di bawah (akses Anyone with link - Viewer).</li>
-                            <li>Buat folder: MPK25_NamaLengkap_Kelas (contoh: MPK25_AisyahNurF_X1).</li>
-                            <li>Di dalam folder buat subfolder per komisi (BPH / KOMINFO / ASPIRASI / ADVOKASI / LEGISLASI) sesuai yang dikerjakan.</li>
-                            <li>Setiap file diberi awalan: [Komisi] - [Jenis Tugas] - [Nama]. Contoh: KOMINFO - Feed 1 - Aisyah.png</li>
-                            <li>Tugas bertanda (Opsional) tidak wajib namun menambah nilai.</li>
-                            <li>Pastikan seluruh materi orisinal. Plagiarisme = Diskualifikasi.</li>
-                        </ul>
-                        <p class="mb-1 small text-secondary">Deadline pengumpulan: <strong>18 September 2025 pukul 23.59 WIB</strong><br> Link pengumpulan Karya: <a href="https://drive.google.com/drive/folders/1jtVxHQGVdV12Ad969_RK0uIlZI-WLl58?usp=sharing" target="blank">Klik ini</a>.</p>
-                    </div>
-
-                    <div class="accordion" id="kisiKomisi">
-                        <!-- BPH -->
-                        <div class="accordion-item mb-3">
-                            <h2 class="accordion-header" id="assBPHHead">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#assBPH" aria-expanded="false" aria-controls="assBPH">
-                                    <i class="fas fa-users-cog me-2"></i> BPH (Badan Pengurus Harian)
-                                </button>
-                            </h2>
-                            <div id="assBPH" class="accordion-collapse collapse" aria-labelledby="assBPHHead" data-bs-parent="#kisiKomisi">
-                                <div class="accordion-body">
-                                    <p class="small text-secondary mb-0">Belum ada pemberitahuan lebih lanjut.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- KOMINFO -->
-                        <div class="accordion-item mb-3">
-                            <h2 class="accordion-header" id="assKominfoHead">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#assKominfo" aria-expanded="true" aria-controls="assKominfo">
-                                    <i class="fas fa-globe me-2"></i> Komisi Informasi
-                                </button>
-                            </h2>
-                            <div id="assKominfo" class="accordion-collapse collapse show" aria-labelledby="assKominfoHead" data-bs-parent="#kisiKomisi">
-                                <div class="accordion-body">
-                                    <ul class="syarat-list">
-                                        <li><strong>Tugas 1 (Wajib):</strong> Desain feed Instagram (ukuran 3240(lebar)x1350(tinggi)) tema: "Kenapa MPK Penting?" atau "Peran MPK di Sekolah". Harus konsisten tipografi & warna. Sertakan caption (maks 120 kata) tiap desain di upload di akun instagram masing-masing, cukup kumpulkan username.</li>
-                                        <li><strong>Tugas 2 (Wajib):</strong> Rangkumkan tentang tanggal peringatan hari-hari penting yang biasanya di peringati di akun sosial MPK dan dikumpulkan dalam bentuk Excel.</li>
-                                        <li><strong>Tugas 3 (Opsional):</strong> Rangkumkan tugas-tugas tiap komisi MPK dalam bentuk excel</li>
-                                    </ul>
-                                    <p class="small text-secondary mb-0">Penilaian: Konsistensi branding, daya tarik visual, kejelasan pesan.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ASPIRASI -->
-                        <div class="accordion-item mb-3">
-                            <h2 class="accordion-header" id="assAspirasiHead">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assAspirasi" aria-expanded="false" aria-controls="assAspirasi">
-                                    <i class="fas fa-microphone me-2"></i> Komisi Aspirasi
-                                </button>
-                            </h2>
-                            <div id="assAspirasi" class="accordion-collapse collapse" aria-labelledby="assAspirasiHead" data-bs-parent="#kisiKomisi">
-                                <div class="accordion-body">
-                                    <p class="small text-secondary mb-0">Belum ada pemberitahuan lebih lanjut.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ADVOKASI -->
-                        <div class="accordion-item mb-3">
-                            <h2 class="accordion-header" id="assAdvokasiHead">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assAdvokasi" aria-expanded="false" aria-controls="assAdvokasi">
-                                    <i class="fas fa-gavel me-2"></i> Komisi Advokasi
-                                </button>
-                            </h2>
-                                                       <div id="assAdvokasi" class="accordion-collapse collapse" aria-labelledby="assAdvokasiHead" data-bs-parent="#kisiKomisi">
-                                <div class="accordion-body">
-                                    <p class="small text-secondary mb-0">Belum ada pemberitahuan lebih lanjut.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- LEGISLASI -->
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="assLegislasiHead">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assLegislasi" aria-expanded="false" aria-controls="assLegislasi">
-                                    <i class="fas fa-balance-scale me-2"></i> Komisi Legislasi
-                                </button>
-                            </h2>
-                            <div id="assLegislasi" class="accordion-collapse collapse" aria-labelledby="assLegislasiHead" data-bs-parent="#kisiKomisi">
-                                <div class="accordion-body">
-                                    <p class="small text-secondary mb-0">Belum ada pemberitahuan lebih lanjut.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="text-center mt-5">
-                        <p class="small text-secondary mb-1">Kerjakan sebaik mungkin sesuai minat dan komitmen.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Reshuffle Anggota -->
     <section class="pengumuman-section" id="reshuffle">
-        <div class="container">
-            <h2 class="section-title" style="font-size:2.3rem;">
-                Penghormatan Anggota MPK yang Gugur
-            </h2>
-            <p class="section-subtitle mb-4" style="font-size:1.15rem;">
-                Kami persembahkan penghormatan setinggi-tingginya kepada para anggota yang telah berjuang dan berkontribusi untuk MPK. Mereka adalah pahlawan yang telah menorehkan jejak perjuangan, meski kini telah gugur dari keanggotaan.
-            </p>
-            <div class="pengumuman-card" style="max-width:800px;margin:3rem auto;box-shadow:0 8px 32px #ff77c6a0;border:2px solid #ff77c6;">
-                <div class="row justify-content-center g-4">
-                    <div class="col-6 col-md-3 text-center">
-                        <div style="position:relative;">
-                            <img src="img/ketua.webp" alt="Sheva Zuhra" class="anggota-img-wide" style="border:5px solid #ff77c6;box-shadow:0 8px 32px #ff77c6a0;filter:grayscale(0.3);">
-                            <span style="display:block;font-weight:700;color:#ff77c6;margin-top:0.7rem;font-size:1.1rem;">Sheva Zuhra</span>
-                            <span style="color:#ccc;font-size:0.95rem;">Ketua</span>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3 text-center">
-                        <div style="position:relative;">
-                            <img src="img/legis3.webp" alt="Marchel Aditia" class="anggota-img-wide" style="border:5px solid #ff77c6;box-shadow:0 8px 32px #ff77c6a0;filter:grayscale(0.3);">
-                            <span style="display:block;font-weight:700;color:#ff77c6;margin-top:0.7rem;font-size:1.1rem;">Marchel Aditia</span>
-                            <span style="color:#ccc;font-size:0.95rem;">Anggota</span>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3 text-center">
-                        <div style="position:relative;">
-                            <img src="img/kooraspi.webp" alt="Fauzan Rafi" class="anggota-img-wide" style="border:5px solid #ff77c6;box-shadow:0 8px 32px #ff77c6a0;filter:grayscale(0.3);">
-                            <span style="display:block;font-weight:700;color:#ff77c6;margin-top:0.7rem;font-size:1.1rem;">Fauzan Rafi</span>
-                            <span style="color:#ccc;font-size:0.95rem;">Koordinator</span>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3 text-center">
-                        <div style="position:relative;">
-                            <img src="img/aspi3.webp" alt="Abyan Farras" class="anggota-img-wide" style="border:5px solid #ff77c6;box-shadow:0 8px 32px #ff77c6a0;filter:grayscale(0.3);">
-                            <span style="display:block;font-weight:700;color:#ff77c6;margin-top:0.7rem;font-size:1.1rem;">Abyan Farras</span>
-                            <span style="color:#ccc;font-size:0.95rem;">Anggota</span>
-                        </div>
-                    </div>
+        <div class="container" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="pengumuman-card" style="max-width:700px;margin:3rem auto;">
+                <h2 class="section-title" style="font-size:2.3rem;">
+                    Semangat untuk Para Pendaftar MPK!
+                </h2>
+                <p class="section-subtitle mb-4" style="font-size:1.15rem;">
+                    Terima kasih atas antusiasme dan semangat kalian dalam mengikuti seleksi MPK MAN IC OKI.<br>
+                    Tetaplah berjuang, berikan yang terbaik, dan jangan pernah menyerah!
+                </p>
+                <div class="mt-4 text-center" style="color:#ff77c6;font-size:1.15rem;font-weight:600;">
+                    <i class="fas fa-bullhorn"></i> Seluruh pengumuman dan informasi resmi MPK akan selalu diumumkan melalui website ini.<br>
+                    <span style="color:#fff;">Pastikan untuk <strong>selalu memantau website MPK</strong> agar tidak ketinggalan info penting!</span>
                 </div>
-                <div class="mt-4 text-center" style="color:#ff77c6;font-size:1.2rem;font-weight:600;">
-                    <i class="fas fa-medal"></i> Terima kasih atas dedikasi dan perjuangan kalian. Nama kalian akan selalu dikenang sebagai pejuang MPK.
-                </div>
-                <div class="mt-4 text-center" style="font-size:1.15rem;color:#fff;font-style:italic;">
+                <div class="mt-4 text-center" style="font-size:1.1rem;color:#fff;font-style:italic;">
                     <i class="fas fa-quote-left"></i>
-                    "Pahlawan bukanlah mereka yang tidak pernah gagal, tetapi mereka yang tidak pernah menyerah untuk berjuang."
+                    "Langkah kecil hari ini adalah awal dari perubahan besar esok hari."
                     <i class="fas fa-quote-right"></i>
-                </div>
-                <div class="mt-3 text-center" style="color:#ff77c6;font-size:1.05rem;">
-                    <i class="fas fa-info-circle"></i> Keputusan reshuffle dilakukan sesuai hasil evaluasi dan kebijakan MPK.
                 </div>
             </div>
         </div>
@@ -1785,7 +1534,7 @@
 
     <!-- Contact Section -->
     <section class="section-container" id="contact">
-        <div class="container">
+        <div class="container" data-aos="fade-down" data-aos-duration="1000">
             <h2 class="section-title">Hubungi Kami</h2>
             <p class="section-subtitle">MPK siap mendengar aspirasi, saran, dan kritik membangun dari seluruh siswa MAN IC OKI</p>
             
@@ -1799,6 +1548,7 @@
                                 </h5>
                                 <p>Ikuti akun media sosial MPK untuk informasi terbaru tentang kegiatan dan program kerja:</p>
                                 
+
                                 <div class="social-links justify-content-start">
                                     <a href="https://www.instagram.com/mpk.icoki/" target="blank" class="social-link"><i class="fab fa-instagram"></i></a>
                                 </div>
@@ -1847,10 +1597,7 @@
         <i class="fas fa-arrow-up"></i>
     </a>
 
-    <script>
-      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-    </script>
-    <script defer src="/_vercel/insights/script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
         // Smooth scrolling untuk anchor links
@@ -1859,10 +1606,8 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    // Calculate offset based on navbar height
                     const navbarHeight = document.querySelector('.navbar-custom').offsetHeight;
                     const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-                    
                     window.scrollTo({
                         top: targetPosition,
                         behavior: 'smooth'
@@ -1884,24 +1629,21 @@
         // Animate on load
         window.addEventListener('load', () => {
             document.body.style.opacity = '1';
-            
             // Inisialisasi carousel dengan interval
             const carousels = document.querySelectorAll('.carousel');
             carousels.forEach(carousel => {
-                // Set interval untuk otomatis berpindah slide
                 new bootstrap.Carousel(carousel, {
                     interval: 5000,
                     wrap: true
                 });
             });
-
             // Hide loading overlay with minimal delay
             const overlay = document.getElementById('loading-overlay');
             if (overlay) {
                 setTimeout(() => {
                     overlay.classList.add('hide');
                     setTimeout(() => { overlay.style.display = 'none'; }, 600);
-                }, 500); // Tambahkan delay 500ms agar overlay terlihat
+                }, 500);
             }
         });
 
@@ -1919,7 +1661,6 @@
 
         // Back to top button
         const backToTopButton = document.querySelector('.back-to-top');
-        
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
                 backToTopButton.classList.add('show');
@@ -1927,105 +1668,16 @@
                 backToTopButton.classList.remove('show');
             }
         });
-        
         backToTopButton.addEventListener('click', (e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-
-        // Countdown timer dengan waktu tambahan & transisi section
-        function updateCountdown() {
-            const deadline = new Date('September 18, 2025 23:59:00').getTime();
-            const now = new Date().getTime();
-            const timeLeft = deadline - now;
-
-            const countdownTitle = document.getElementById('countdown-title');
-            const countdownContainer = document.getElementById('countdown-container');
-            const pengumumanSection = document.getElementById('pengumuman-container');
-            const thankyouSection = document.getElementById('thankyou-section');
-            const extraTimeBanner = document.getElementById('extra-time-banner');
-
-            // State: sebelum deadline utama
-            if (timeLeft > 0) {
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-                countdownTitle.textContent = 'Waktu Tersisa Menuju Deadline Pengumpulan:';
-                document.getElementById('days').textContent = days.toString().padStart(2, '0');
-                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-                countdownContainer.style.display = '';
-                pengumumanSection.parentElement.style.display = '';
-                thankyouSection.style.display = 'none';
-                extraTimeBanner.style.display = 'none';
-            }
-            // State: waktu tambahan 1 hari
-            else if (timeLeft <= 0 && now < deadline + 24 * 60 * 60 * 1000) {
-                const extraTimeLeft = deadline + 24 * 60 * 60 * 1000 - now;
-                const days = Math.floor(extraTimeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((extraTimeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((extraTimeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((extraTimeLeft % (1000 * 60)) / 1000);
-
-                countdownTitle.textContent = 'Waktu tambahan 1 hari diberikan! Segera selesaikan tugas Anda:';
-                document.getElementById('days').textContent = days.toString().padStart(2, '0');
-                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-                countdownContainer.style.display = '';
-                pengumumanSection.parentElement.style.display = '';
-                thankyouSection.style.display = 'none';
-                extraTimeBanner.style.display = '';
-            }
-            // State: selesai, tampilkan ucapan terima kasih
-            else {
-                pengumumanSection.parentElement.style.display = 'none';
-                thankyouSection.style.display = '';
-            }
-        }
-
-        setInterval(updateCountdown, 1000);
-        updateCountdown(); // Initial call
-
-        // Animasi saat elemen masuk viewport
-        const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.timeline-item, .pengumuman-card, .divisi-tab-content');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (elementPosition < screenPosition) {
-                    element.style.opacity = 1;
-                    element.style.transform = 'translateY(0)';
-                    element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                }
-            });
-        };
-        
-        // Set initial state for animated elements
-        document.querySelectorAll('.timeline-item, .pengumuman-card, .divisi-tab-content').forEach(element => {
-            element.style.opacity = 0;
-            element.style.transform = 'translateY(20px)';
-        });
-        
-        window.addEventListener('scroll', animateOnScroll);
-        // Trigger once on load
-        window.addEventListener('load', animateOnScroll);
+        AOS.init();
     </script>
 
 
 </body>
 </html>
-
-
-
-
-
-
 
 
 
