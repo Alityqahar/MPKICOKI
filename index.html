@@ -22,7 +22,7 @@
     <meta name="twitter:image" content="https://mpkicoki.vercel.app/assets/img/mpk.png">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" href="img/mpk.png" type="image/png">
+    <link rel="icon" href="assets/img/mpk.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -53,956 +53,7 @@
       }
     }
     </script>
-
-    <style>
-        :root {
-            --primary: #7877c6;
-            --secondary: #ff77c6;
-            --dark: #0a0a0a;
-            --dark-light: #1a1a2e;
-            --text-light: rgba(255, 255, 255, 0.85);
-        }
-        
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-        }
-
-        .scroll-arrow {
-            width: 24px;
-            height: 24px;
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            border-top: none;
-            border-left: none;
-            transform: rotate(45deg);
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0) rotate(45deg);
-            }
-            40% {
-                transform: translateY(-10px) rotate(45deg);
-            }
-            60% {
-                transform: translateY(-5px) rotate(45deg);
-            }
-        }
-
-        /* Loading animation */
-        body {
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        /* Mobile optimizations */
-        @media (max-width: 768px) {
-            .navbar-custom {
-                padding: 0.4rem 0.7rem;
-            }
-            .hero-section {
-                padding-top: 80px;
-            }
-            
-            .hero-text-content {
-                text-align: center;
-                margin-bottom: 2rem;
-            }
-            
-            .particle {
-                display: none;
-            }
-            
-            /* Perbaikan carousel untuk mobile */
-            .anggota-carousel-wide {
-                padding: 12px 0 0 0;
-                margin-bottom: 16px;
-            }
-            
-            .anggota-card {
-                min-width: 120px;
-                max-width: 140px;
-                padding: 10px 5px 6px 5px;
-                margin: 0 4px;
-            }
-            
-            .anggota-img-wide {
-                width: 80px;
-                height: 80px;
-            }
-            
-            .anggota-caption h5 {
-                font-size: 0.9rem;
-                margin-bottom: 2px;
-            }
-            
-            .anggota-caption p {
-                font-size: 0.8rem;
-            }
-            
-            .divisi-logo {
-                width: 140px;
-                height: 140px;
-                padding: 18px;
-            }
-
-            .hero-title {
-                font-size: 2.5rem !important;
-            }
-            
-            .section-title {
-                font-size: 2rem !important;
-            }
-            
-            .kabinet-logo {
-                width: 180px !important;
-                height: 180px !important;
-            }
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: var(--dark);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* Animated Background */
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e  25%, #16213e  50%, #0f0f23 75%, #0a0a0a 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-        }
-
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
-            33% { transform: translate(30px, -30px) rotate(120deg); }
-            66% { transform: translate(-20px, 20px) rotate(240deg); }
-        }
-
-        /* Navbar */
-        .navbar-custom {
-            background: rgba(10, 10, 10, 0.97);
-            backdrop-filter: blur(24px);
-            border-bottom: 1.5px solid rgba(120, 119, 198, 0.15);
-            padding: 0.6rem 1.2rem;
-            box-shadow: 0 4px 24px 0 rgba(120,119,198,0.10), 0 1.5px 0 0 var(--primary);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .navbar-brand {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 800;
-            font-size: 1.25rem;
-            color: #fff !important;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            letter-spacing: 1px;
-        }
-
-        .navbar-brand img {
-            width: 32px;
-            height: 32px;
-            filter: drop-shadow(0 0 8px rgba(120, 119, 198, 0.7));
-            transition: transform 0.2s;
-        }
-        .navbar-brand img:hover {
-            transform: scale(1.08) rotate(-6deg);
-        }
-
-        .nav-link {
-            color: rgba(255, 255, 255, 0.85) !important;
-            font-weight: 600;
-            margin: 0 0.7rem;
-            transition: all 0.25s cubic-bezier(.4,2,.6,1);
-            position: relative;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            padding: 0.5rem 0.3rem;
-            border-radius: 8px;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            color: #fff !important;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-            box-shadow: 0 2px 16px 0 rgba(120,119,198,0.13);
-            transform: translateY(-2px) scale(1.05);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 4px;
-            left: 20%;
-            width: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
-            transition: width 0.3s;
-        }
-
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 60%;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            position: relative;
-            height: 100vh;
-            min-height: 600px;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            padding-top: 76px; /* Untuk mengkompensasi navbar fixed */
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-        }
-
-        .hero-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(3rem, 8vw, 5rem);
-            font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 0%, var(--primary) 50%, var(--secondary) 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 300;
-            margin-bottom: 2rem;
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-            margin-bottom: 3rem;
-            max-width: 500px;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary-custom {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border: none;
-            padding: 12px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(120, 119, 198, 0.3);
-            position: relative;
-            overflow: hidden;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary-custom::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn-primary-custom:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary-custom:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(120, 119, 198, 0.4);
-            color: white;
-        }
-
-        .btn-outline-custom {
-            background: transparent;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            padding: 12px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-outline-custom:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--primary);
-            transform: translateY(-3px);
-            color: white;
-        }
-
-        /* Logo Section */
-        .hero-logo-container {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-        .hero-logo {
-            width: clamp(200px, 30vw, 400px);
-            height: auto;
-            filter: drop-shadow(0 0 30px rgba(120, 119, 198, 0.6));
-        }
-
-        .logo-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: 80%;
-            background: radial-gradient(circle, rgba(120, 119, 198, 0.2) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        /* Floating particles */
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(120, 119, 198, 0.6);
-            border-radius: 50%;
-            animation: particleFloat 8s linear infinite;
-        }
-
-        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-        .particle:nth-child(2) { top: 60%; left: 20%; animation-delay: 2s; }
-        .particle:nth-child(3) { top: 40%; left: 80%; animation-delay: 4s; }
-        .particle:nth-child(4) { top: 80%; left: 70%; animation-delay: 6s; }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
-            33% { transform: translate(30px, -30px) rotate(120deg); }
-            66% { transform: translate(-20px, 20px) rotate(240deg); }
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
-        }
-
-        @keyframes particleFloat {
-            0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-        }
-
-        /* Section Styling */
-        .section-container {
-            padding: 5rem 0;
-            position: relative;
-        }
-        
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.8rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 3rem;
-            letter-spacing: 1px;
-            text-align: center;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-        
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 4rem;
-        }
-
-        /* Section Kabinet Bhaskasura */
-        .kabinet-section {
-            background: linear-gradient(135deg, var(--dark-light) 0%, var(--dark) 100%);
-            border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .kabinet-logo-container {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-        .kabinet-logo {
-            width: clamp(200px, 28vw, 320px);
-            height: auto;
-            filter: drop-shadow(0 0 30px rgba(120, 119, 198, 0.6));
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            box-shadow: 0 0 48px 0 rgba(120,119,198,0.30), 0 8px 32px rgba(255,119,198,0.10);
-            padding: 24px;
-            transition: all 0.3s ease;
-        }
-        
-        .kabinet-logo:hover {
-            transform: scale(1.05);
-        }
-        
-        .logo-glow-kabinet {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: 80%;
-            background: radial-gradient(circle, rgba(120, 119, 198, 0.2) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
-        .kabinet-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1.5rem;
-            letter-spacing: 1px;
-        }
-        
-        .symbol-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .symbol-title i {
-            font-size: 1.1rem;
-            color: var(--primary);
-        }
-        
-        .symbol-desc {
-            color: rgba(255,255,255,0.85);
-            font-size: 1.05rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            padding-left: 2rem;
-        }
-        
-        .kabinet-motto {
-            background: rgba(10,10,20,0.7);
-            border: 1px solid rgba(120, 119, 198, 0.2);
-            box-shadow: 0 8px 32px rgba(120,119,198,0.10);
-            border-radius: 20px;
-            padding: 2.5rem;
-            margin-top: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .kabinet-motto::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(120,119,198,0.1), rgba(255,119,198,0.05));
-            z-index: -1;
-        }
-        
-        .motto-text {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        
-        .motto-desc {
-            color: rgba(255,255,255,0.85);
-            font-size: 1.1rem;
-            line-height: 1.6;
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        /* Section Divisi MPK */
-        .divisi-section {
-            background: linear-gradient(135deg, var(--dark-light) 0%, var(--dark) 100%);
-            border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .divisi-tabs .nav-link {
-            color: #fff;
-            font-weight: 600;
-            font-family: 'Inter', sans-serif;
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid transparent;
-            margin: 0 0.5rem;
-            transition: all 0.3s;
-            border-radius: 0;
-            font-size: 1.1rem;
-            padding: 0.75rem 1.5rem;
-            position: relative;
-        }
-
-        .divisi-tabs .nav-link.active,
-        .divisi-tabs .nav-link:hover {
-            color: var(--secondary);
-            border-bottom: 2.5px solid var(--secondary);
-            background: linear-gradient(90deg, rgba(120,119,198,0.15), rgba(255,119,198,0.10));
-        }
-
-        .divisi-tab-content {
-            background: rgba(10,10,20,0.7);
-            border-radius: 1.5rem;
-            box-shadow: 0 8px 32px rgba(120,119,198,0.10);
-            padding: 2.5rem 2rem;
-            margin-top: 1rem;
-            min-height: 320px;
-            animation: fadeIn 0.8s;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .divisi-logo {
-            width: 180px;
-            height: 180px;
-            object-fit: contain;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            box-shadow: 0 0 48px 0 rgba(120,119,198,0.30), 0 8px 32px rgba(255,119,198,0.10);
-            padding: 24px;
-            margin-bottom: 1rem;
-            animation: logoFloat 3s ease-in-out infinite;
-            transition: transform 0.2s;
-        }
-        .divisi-logo:hover {
-            transform: scale(1.08) rotate(3deg);
-        }
-
-        .divisi-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.7rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .divisi-desc {
-            color: rgba(255,255,255,0.85);
-            font-size: 1.1rem;
-            font-weight: 400;
-            line-height: 1.7;
-            margin-bottom: 0;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px);}
-            to { opacity: 1; transform: translateY(0);}
-        }
-
-        /* Carousel Anggota Divisi Wide */
-        .anggota-carousel-wide {
-            width: 100%;
-            max-width: 100%;
-            padding: 24px 0 0 0;
-            margin: 0 auto 24px auto;
-            background: rgba(30,30,50,0.15);
-            border-radius: 1.2rem;
-            box-shadow: 0 2px 16px rgba(120,119,198,0.08);
-        }
-        
-        .anggota-card {
-            background: rgba(255,255,255,0.04);
-            border-radius: 1rem;
-            padding: 22px 18px 14px 18px;
-            margin: 0 6px;
-            box-shadow: 0 2px 12px rgba(120,119,198,0.07);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 170px;
-            max-width: 210px;
-            flex: 1 1 150px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        
-        .anggota-card:hover {
-            transform: scale(1.06) rotate(-2deg);
-            background: rgba(120,119,198,0.08);
-            box-shadow: 0 6px 20px rgba(120,119,198,0.15);
-        }
-        
-        .anggota-img-wide {
-            width: 130px;
-            height: 130px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 3px solid #fff;
-            box-shadow: 0 2px 12px rgba(120,119,198,0.13);
-            background: #222;
-            margin-bottom: 10px;
-            transition: transform 0.3s ease;
-        }
-        
-        .anggota-img-wide:hover {
-            transform: scale(1.09) rotate(2deg);
-        }
-        
-        .anggota-caption {
-            color: #fff;
-            text-align: center;
-            margin-top: 4px;
-        }
-        
-        .anggota-caption h5 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin-bottom: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .anggota-caption p {
-            font-size: 0.95rem;
-            color: #ccc;
-            margin-bottom: 0;
-        }
-
-        /* Modal styling */
-        .modal-content.bg-dark {
-            background: rgba(15, 15, 35, 0.95) !important;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(120, 119, 198, 0.2);
-        }
-        
-        /* Footer */
-        .footer {
-            background: var(--dark);
-            padding: 3rem 0 1.5rem;
-            border-top: 1px solid rgba(120, 119, 198, 0.2);
-            color: rgba(255, 255, 255, 0.7);
-            text-align: center;
-        }
-        
-        .footer-logo {
-            width: 60px;
-            margin-bottom: 1.5rem;
-            opacity: 0.8;
-        }
-        
-        .footer-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-        
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .social-link:hover {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            transform: translateY(-3px);
-            color: white;
-        }
-        
-        .copyright {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* Open Recruitment Section */
-        .pengumuman-section {
-            background: linear-gradient(135deg, var(--dark-light) 0%, var(--dark) 100%);
-            padding: 5rem 0;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .pengumuman-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(120,119,198,0.25);
-            border-radius: 1.3rem;
-            padding: 1.8rem 1.6rem;
-            box-shadow: 0 8px 32px rgba(120,119,198,0.10);
-            backdrop-filter: blur(6px);
-        }
-        
-        .syarat-list {
-            margin: 0 0 1rem 0.2rem;
-            padding-left: 1.1rem;
-            color: rgba(255,255,255,0.85);
-            font-size: 0.98rem;
-        }
-        
-        .syarat-list li { 
-            margin-bottom: 0.4rem; 
-            position: relative;
-        }
-        
-        .syarat-list li::before {
-            content: '•';
-            color: var(--secondary);
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-        }
-        
-        .accordion-button {
-            background: rgba(120,119,198,0.10);
-            color: #fff;
-            font-weight: 600;
-            backdrop-filter: blur(4px);
-            border: none;
-            border-radius: 12px !important;
-            padding: 1rem 1.5rem;
-        }
-        
-        .accordion-button:not(.collapsed) {
-            background: linear-gradient(90deg, rgba(120,119,198,0.25), rgba(255,119,198,0.20));
-            color: #ffb6ec;
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
-        }
-        
-        .accordion-button:focus { 
-            box-shadow: 0 0 0 0.15rem rgba(255,119,198,0.4); 
-        }
-        
-        .accordion-item { 
-            background: transparent; 
-            border: 1px solid rgba(120,119,198,0.25); 
-            border-radius: 12px !important; 
-            overflow: hidden; 
-            margin-bottom: 1rem;
-        }
-        
-        .badge-komisi { 
-            background: linear-gradient(135deg, var(--primary), var(--secondary)); 
-            font-size: 0.65rem; 
-            letter-spacing: 0.5px; 
-        }
-        
-        .subtitle-pengumuman { 
-            color: rgba(255,255,255,0.75); 
-            font-size: 1.1rem; 
-            max-width: 760px; 
-            margin: 0 auto 2rem; 
-            text-align: center;
-        }
-        
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
-        }
-        
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2rem;
-            padding-left: 1.5rem;
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -1.9rem;
-            top: 0.3rem;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--secondary);
-        }
-        
-        .timeline-date {
-            font-weight: 600;
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .timeline-content {
-            color: rgba(255,255,255,0.8);
-        }
-
-        /* Back to top button */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 4px 20px rgba(120, 119, 198, 0.3);
-            transition: all 0.3s ease;
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-        }
-        
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 25px rgba(120, 119, 198, 0.5);
-        }
-
-        @keyframes pulseExtra {
-            0% { box-shadow:0 2px 16px rgba(255,119,198,0.25); }
-            100% { box-shadow:0 6px 32px rgba(255,119,198,0.45); }
-        }
-
-        @media (max-width: 768px){
-            .pengumuman-section { padding: 3rem 0; }
-            .accordion-button { font-size: 0.95rem; }
-            .syarat-list { font-size: 0.85rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/index.css">
 </head>
 <body>
     <!-- Loading Overlay -->
@@ -1132,7 +183,7 @@
                 <div class="col-lg-6 text-center mb-5 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
                     <div class="kabinet-logo-container">
                         <div class="logo-glow-kabinet"></div>
-                        <img src="img/kabinet.png" alt="Logo Kabinet Arkhayasha Bhaskasura MPK IC OKI" class="kabinet-logo">
+                        <img src="assets/img/kabinet.png" alt="Logo Kabinet Arkhayasha Bhaskasura MPK IC OKI" class="kabinet-logo">
                     </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
@@ -1209,7 +260,7 @@
                 <div class="tab-pane fade show active" id="divisi1" role="tabpanel" aria-labelledby="divisi1-tab">
                     <div class="row align-items-center">
                         <div class="col-md-6 text-center mb-3 mb-md-0">
-                            <img src="img/BPH.png" alt="Divisi BPH" class="divisi-logo mb-4">
+                            <img src="assets/img/BPH.png" alt="Divisi BPH" class="divisi-logo mb-4">
                             <!-- Carousel Anggota BPH -->
                             <div id="carouselBPH" class="carousel slide anggota-carousel-wide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
@@ -1217,14 +268,14 @@
                                         <div class="d-flex justify-content-center gap-4 flex-wrap">
                                             <!-- Hapus Sheva Zuhra dari BPH -->
                                             <div class="anggota-card">
-                                                <img src="img/wakil.webp" class="anggota-img-wide" alt="Wakil Ketua - Zainal Abidin">
+                                                <img src="assets/img/wakil.webp" class="anggota-img-wide" alt="Wakil Ketua - Zainal Abidin">
                                                 <div class="anggota-caption">
                                                     <h5>Zainal Abidin</h5>
                                                     <p>Ketua Umum</p>
                                                 </div>
                                             </div>
                                             <div class="anggota-card">
-                                                <img src="img/sekre1.webp" class="anggota-img-wide" alt="Sekretaris I - Farras Adzkia Azzahra">
+                                                <img src="assets/img/sekre1.webp" class="anggota-img-wide" alt="Sekretaris I - Farras Adzkia Azzahra">
                                                 <div class="anggota-caption">
                                                     <h5>Farras Adzkia Azzahra</h5>
                                                     <p>Wakil Ketua</p>
@@ -1235,21 +286,21 @@
                                     <div class="carousel-item">
                                         <div class="d-flex justify-content-center gap-4 flex-wrap">
                                             <div class="anggota-card">
-                                                <img src="img/sekre2.webp" class="anggota-img-wide" alt="Sekretaris II - Khadijah Althafunnisa">
+                                                <img src="assets/img/sekre2.webp" class="anggota-img-wide" alt="Sekretaris II - Khadijah Althafunnisa">
                                                 <div class="anggota-caption">
                                                     <h5>Khadijah Althafunnisa</h5>
                                                     <p>Sekretaris II</p>
                                                 </div>
                                             </div>
                                             <div class="anggota-card">
-                                                <img src="img/benda1.webp" class="anggota-img-wide" alt="Bendahara I - Syifa Tria Ardhani">
+                                                <img src="assets/img/benda1.webp" class="anggota-img-wide" alt="Bendahara I - Syifa Tria Ardhani">
                                                 <div class="anggota-caption">
                                                     <h5>Syifa Tria Ardhani</h5>
                                                     <p>Bendahara I</p>
                                                 </div>
                                             </div>
                                             <div class="anggota-card">
-                                                <img src="img/benda2.webp" class="anggota-img-wide" alt="Bendahara II - Galang Widiansyah">
+                                                <img src="assets/img/benda2.webp" class="anggota-img-wide" alt="Bendahara II - Galang Widiansyah">
                                                 <div class="anggota-caption">
                                                     <h5>Galang Widiansyah</h5>
                                                     <p>Bendahara II</p>
@@ -1280,28 +331,28 @@
                 <div class="tab-pane fade" id="divisi2" role="tabpanel" aria-labelledby="divisi2-tab">
                     <div class="row align-items-center">
                         <div class="col-md-6 text-center mb-3 mb-md-0">
-                            <img src="img/komin.png" alt="Divisi Informasi" class="divisi-logo mb-4">
+                            <img src="assets/img/komin.png" alt="Divisi Informasi" class="divisi-logo mb-4">
                             <!-- Carousel Anggota Kominfo -->
                             <div id="carouselKominfo" class="carousel slide anggota-carousel-wide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <div class="d-flex justify-content-center gap-4 flex-wrap">
                                             <div class="anggota-card">
-                                                <img src="img/koorkomin.webp" class="anggota-img-wide" alt="Koordinator Kominfo - Ality Qahar Putra Dito">
+                                                <img src="assets/img/koorkomin.webp" class="anggota-img-wide" alt="Koordinator Kominfo - Ality Qahar Putra Dito">
                                                 <div class="anggota-caption">
                                                     <h5>Ality Qahar Putra Dito</h5>
                                                     <p>Koordinator</p>
                                                 </div>
                                             </div>
                                             <div class="anggota-card">
-                                                <img src="img/komin1.webp" class="anggota-img-wide" alt="Wakil Koordinator Kominfo - M. Ghazi Yassar Bahri">
+                                                <img src="assets/img/komin1.webp" class="anggota-img-wide" alt="Wakil Koordinator Kominfo - M. Ghazi Yassar Bahri">
                                                 <div class="anggota-caption">
                                                     <h5>M. Ghazi Yassar Bahri</h5>
                                                     <p>Wakil Koordinator</p>
                                                 </div>
                                             </div>
                                             <div class="anggota-card">
-                                                <img src="img/komin2.webp" class="anggota-img-wide" alt="Anggota Kominfo - Hasna Luthfiyyah">
+                                                <img src="assets/img/komin2.webp" class="anggota-img-wide" alt="Anggota Kominfo - Hasna Luthfiyyah">
                                                 <div class="anggota-caption">
                                                     <h5>Hasna Luthfiyyah</h5>
                                                     <p>Anggota</p>
@@ -1312,21 +363,21 @@
                                     <div class="carousel-item">
                                         <div class="d-flex justify-content-center gap-4 flex-wrap">
                                             <div class="anggota-card">
-                                                <img src="img/komin3.webp" class="anggota-img-wide" alt="Anggota Kominfo - Marsa Iffah Azizah">
+                                                <img src="assets/img/komin3.webp" class="anggota-img-wide" alt="Anggota Kominfo - Marsa Iffah Azizah">
                                                 <div class="anggota-caption">
                                                     <h5>Marsa Iffah Azizah</h5>
                                                     <p>Anggota</p>
                                                 </div>
                                             </div>
                                             <div class="anggota-card">
-                                                <img src="img/komin4.webp" class="anggota-img-wide" alt="Anggota Kominfo - Mahira Luthfia Athifa">
+                                                <img src="assets/img/komin4.webp" class="anggota-img-wide" alt="Anggota Kominfo - Mahira Luthfia Athifa">
                                                 <div class="anggota-caption">
                                                     <h5>Mahira Luthfia Athifa</h5>
                                                     <p>Anggota</p>
                                                 </div>
                                             </div>
                                             <div class="anggota-card">
-                                                <img src="img/komin5.webp" class="anggota-img-wide" alt="Anggota Kominfo - Fawaaz Abdul Ghani">
+                                                <img src="assets/img/komin5.webp" class="anggota-img-wide" alt="Anggota Kominfo - Fawaaz Abdul Ghani">
                                                 <div class="anggota-caption">
                                                     <h5>Fawaaz Abdul Ghani</h5>
                                                     <p>Anggota</p>
@@ -1358,7 +409,7 @@
                 <div class="tab-pane fade" id="divisi3" role="tabpanel" aria-labelledby="divisi3-tab">
                     <div class="row align-items-center">
                         <div class="col-md-6 text-center mb-3 mb-md-0">
-                            <img src="img/aspi.png" alt="Divisi Aspirasi" class="divisi-logo mb-4">
+                            <img src="assets/img/aspi.png" alt="Divisi Aspirasi" class="divisi-logo mb-4">
                             <!-- Carousel Anggota Aspirasi -->
                             <div id="carouselAspirasi" class="carousel slide anggota-carousel-wide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
@@ -1366,7 +417,7 @@
                                         <div class="d-flex justify-content-center gap-4 flex-wrap">
                                             <!-- Hapus Fauzan Rafi Azhar dan Muhammad Abyan Farras dari Aspirasi -->
                                             <div class="anggota-card">
-                                                <img src="img/aspi2.webp" class="anggota-img-wide" alt="Wakil Koordinator Aspirasi - Luqman Hakim">
+                                                <img src="assets/img/aspi2.webp" class="anggota-img-wide" alt="Wakil Koordinator Aspirasi - Luqman Hakim">
                                                 <div class="anggota-caption">
                                                     <h5>Luqman Hakim</h5>
                                                     <p>Koordinator</p>
@@ -1377,21 +428,21 @@
                                     <div class="carousel-item">
                                         <div class="d-flex justify-content-center gap-4 flex-wrap">
                                             <div class="anggota-card">
-                                                <img src="img/aspi4.webp" class="anggota-img-wide" alt="Anggota Aspirasi - Siti Syarah">
+                                                <img src="assets/img/aspi4.webp" class="anggota-img-wide" alt="Anggota Aspirasi - Siti Syarah">
                                                 <div class="anggota-caption">
                                                     <h5>Siti Syarah</h5>
                                                     <p>Anggota</p>
                                                 </div>
                                             </div>
                                             <div class="anggota-card">
-                                                <img src="img/aspi5.webp" class="anggota-img-wide" alt="Anggota Aspirasi - Fanny Afnan Jannati">
+                                                <img src="assets/img/aspi5.webp" class="anggota-img-wide" alt="Anggota Aspirasi - Fanny Afnan Jannati">
                                                 <div class="anggota-caption">
                                                     <h5>Fanny Afnan Jannati</h5>
                                                     <p>Anggota</p>
                                                 </div>
                                             </div>
                                             <div class="anggota-card">
-                                                <img src="img/aspi6.webp" class="anggota-img-wide" alt="Anggota Aspirasi - Aliyyah Ramadhani Yasri">
+                                                <img src="assets/img/aspi6.webp" class="anggota-img-wide" alt="Anggota Aspirasi - Aliyyah Ramadhani Yasri">
                                                 <div class="anggota-caption">
                                                     <h5>Aliyyah Ramadhani Yasri</h5>
                                                     <p>Anggota</p>
@@ -1423,28 +474,28 @@
                 <div class="tab-pane fade" id="divisi4" role="tabpanel" aria-labelledby="divisi4-tab">
                     <div class="row align-items-center">
                         <div class="col-md-6 text-center mb-3 mb-md-0">
-                            <img src="img/advo.png" alt="Divisi Advokasi" class="divisi-logo mb-4">
+                            <img src="assets/img/advo.png" alt="Divisi Advokasi" class="divisi-logo mb-4">
                             <!-- Carousel Anggota Advokasi -->
                             <div id="carouselAdvokasi" class="carousel slide anggota-carousel-wide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <div class="d-flex justify-content-center gap-4 flex-wrap">
                                             <div class="anggota-card">
-                                                <img src="img/advo1.webp" class="anggota-img-wide" alt="Koordinator Advokasi - Muhammad Fir Rafiqil A'la">
+                                                <img src="assets/img/advo1.webp" class="anggota-img-wide" alt="Koordinator Advokasi - Muhammad Fir Rafiqil A'la">
                                                 <div class="anggota-caption">
                                                     <h5>Muhammad Fir Rafiqil A'la</h5>
                                                     <p>Koordinator</p>
                                                 </div>
                                             </div>
                                             <div class="anggota-card">
-                                                <img src="img/advo2.webp" class="anggota-img-wide" alt="Wakil Koordinator Advokasi - Maya Durrotunnashihah">
+                                                <img src="assets/img/advo2.webp" class="anggota-img-wide" alt="Wakil Koordinator Advokasi - Maya Durrotunnashihah">
                                                 <div class="anggota-caption">
                                                     <h5>Maya Durrotunnashihah</h5>
                                                     <p>Wakil Koordinator</p>
                                                 </div>
                                             </div>
                                             <div class="anggota-card">
-                                                <img src="img/advo3.webp" class="anggota-img-wide" alt="Anggota Advokasi - Raisya Khalilah Putri">
+                                                <img src="assets/img/advo3.webp" class="anggota-img-wide" alt="Anggota Advokasi - Raisya Khalilah Putri">
                                                 <div class="anggota-caption">
                                                     <h5>Raisya Khalilah Putri</h5>
                                                     <p>Anggota</p>
@@ -1455,14 +506,14 @@
                                     <div class="carousel-item">
                                         <div class="d-flex justify-content-center gap-4 flex-wrap">
                                             <div class="anggota-card">
-                                                <img src="img/advo4.webp" class="anggota-img-wide" alt="Anggota Advokasi - Rahmad Al Hidayah">
+                                                <img src="assets/img/advo4.webp" class="anggota-img-wide" alt="Anggota Advokasi - Rahmad Al Hidayah">
                                                 <div class="anggota-caption">
                                                     <h5>Rahmad <br>Al Hidayah</h5>
                                                     <p>Anggota</p>
                                                 </div>
                                             </div>
                                             <div class="anggota-card">
-                                                <img src="img/advo5.webp" class="anggota-img-wide" alt="Anggota Advokasi - Fauzan Alfarizi">
+                                                <img src="assets/img/advo5.webp" class="anggota-img-wide" alt="Anggota Advokasi - Fauzan Alfarizi">
                                                 <div class="anggota-caption">
                                                     <h5>Fauzan Alfarizi</h5>
                                                     <p>Anggota</p>
@@ -1494,7 +545,7 @@
                 <div class="tab-pane fade" id="divisi5" role="tabpanel" aria-labelledby="divisi5-tab">
                     <div class="row align-items-center">
                         <div class="col-md-6 text-center mb-3 mb-md-0">
-                            <img src="img/legis.png" alt="Komisi Legislasi" class="divisi-logo mb-4">
+                            <img src="assets/img/legis.png" alt="Komisi Legislasi" class="divisi-logo mb-4">
                             <!-- Carousel Anggota Legislasi -->
                             <div id="carouselLegislasi" class="carousel slide anggota-carousel-wide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
@@ -1502,14 +553,14 @@
                                         <div class="d-flex justify-content-center gap-4 flex-wrap">
                                             <!-- Hapus Marchel Aditia dari Legislasi -->
                                             <div class="anggota-card">
-                                                <img src="img/legis1.webp" class="anggota-img-wide" alt="Koordinator Legislasi - Aisyah Nur F.">
+                                                <img src="assets/img/legis1.webp" class="anggota-img-wide" alt="Koordinator Legislasi - Aisyah Nur F.">
                                                 <div class="anggota-caption">
                                                     <h5>Aisyah Nur F.</h5>
                                                     <p>Koordinator</p>
                                                 </div>
                                             </div>
                                             <div class="anggota-card">
-                                                <img src="img/legis2.webp" class="anggota-img-wide" alt="Wakil Koordinator Legislasi - Albania Kamal">
+                                                <img src="assets/img/legis2.webp" class="anggota-img-wide" alt="Wakil Koordinator Legislasi - Albania Kamal">
                                                 <div class="anggota-caption">
                                                     <h5>Albania Kamal</h5>
                                                     <p>Wakil Koordinator</p>
@@ -1520,7 +571,7 @@
                                     <div class="carousel-item">
                                         <div class="d-flex justify-content-center gap-4 flex-wrap">
                                             <div class="anggota-card">
-                                                <img src="img/legis4.webp" class="anggota-img-wide" alt="Anggota Legislasi - Imam Zayid Ahadi">
+                                                <img src="assets/img/legis4.webp" class="anggota-img-wide" alt="Anggota Legislasi - Imam Zayid Ahadi">
                                                 <div class="anggota-caption">
                                                     <h5>Imam Zayid Ahadi</h5>
                                                     <p>Anggota</p>
@@ -1553,25 +604,141 @@
         </div>
     </section>
 
-    <!-- Section Pengumuman Persyaratan per Komisi -->
+ <!-- Section Pengumuman Persyaratan per Komisi -->
     <section class="pengumuman-section" id="reshuffle">
-        <div class="container" data-aos="zoom-in" data-aos-duration="1000">
-            <div class="pengumuman-card" style="max-width:700px;margin:3rem auto;">
-                <h2 class="section-title" style="font-size:2.3rem;">
-                    Semangat untuk Para Pendaftar MPK!
-                </h2>
-                <p class="section-subtitle mb-4" style="font-size:1.15rem;">
-                    Terima kasih atas antusiasme dan semangat kalian dalam mengikuti seleksi MPK MAN IC OKI.<br>
-                    Tetaplah berjuang, berikan yang terbaik, dan jangan pernah menyerah!
-                </p>
-                <div class="mt-4 text-center" style="color:#ff77c6;font-size:1.15rem;font-weight:600;">
-                    <i class="fas fa-bullhorn"></i> Seluruh pengumuman dan informasi resmi MPK akan selalu diumumkan melalui website ini.<br>
-                    <span style="color:#fff;">Pastikan untuk <strong>selalu memantau website MPK</strong> agar tidak ketinggalan info penting!</span>
+        <div class="container" data-aos="fade-up" data-aos-duration="1000">
+            <h2 class="section-title">Rundown Seleksi Pemilihan Ketua & Wakil Ketua MPK</h2>
+            <p class="section-subtitle">
+                Proses seleksi yang transparan dan demokratis untuk memilih pemimpin MPK MAN IC OKI
+            </p>
+            
+            <div class="row">
+                <div class="col-12">
+                    <div class="rundown-timeline-modern">
+                        <div class="rundown-step-modern" data-aos="fade-right" data-aos-delay="600">
+                            <div class="step-number">01</div>
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon"><i class="fas fa-file-alt"></i></div>
+                            </div>
+                            <div class="step-content">
+                                <h4 class="step-title">Pengumpulan Formulir</h4>
+                                <p class="step-description">Peserta mengisi dan menyerahkan formulir pendaftaran lengkap sesuai dengan ketentuan yang telah ditetapkan.</p>
+                            </div>
+                        </div>
+
+                        <div class="rundown-step-modern" data-aos="fade-left" data-aos-delay="600">
+                            <div class="step-number">02</div>
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon"><i class="fas fa-users"></i></div>
+                            </div>
+                            <div class="step-content">
+                                <h4 class="step-title">Pelaksanaan FGD</h4>
+                                <p class="step-description">Focus Group Discussion untuk menilai kemampuan komunikasi, kerjasama, dan problem solving calon pengurus.</p>
+                            </div>
+                        </div>
+
+                        <div class="rundown-step-modern" data-aos="fade-right" data-aos-delay="600">
+                            <div class="step-number">03</div>
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon"><i class="fas fa-comments"></i></div>
+                            </div>
+                            <div class="step-content">
+                                <h4 class="step-title">Wawancara & Penentuan Paslon</h4>
+                                <p class="step-description">Wawancara mendalam untuk menggali visi, misi, dan komitmen, dilanjutkan dengan penetapan pasangan calon.</p>
+                            </div>
+                        </div>
+
+                        <div class="rundown-step-modern" data-aos="fade-left" data-aos-delay="600">
+                            <div class="step-number">04</div>
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon"><i class="fas fa-handshake"></i></div>
+                            </div>
+                            <div class="step-content">
+                                <h4 class="step-title">Mediasi Pasangan</h4>
+                                <p class="step-description">Mediasi untuk memastikan kekompakan, kesamaan visi, dan sinergi antara calon ketua dan wakil ketua.</p>
+                            </div>
+                        </div>
+
+                        <div class="rundown-step-modern" data-aos="fade-right" data-aos-delay="600">
+                            <div class="step-number">05</div>
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon"><i class="fas fa-list-ol"></i></div>
+                            </div>
+                            <div class="step-content">
+                                <h4 class="step-title">Pembagian Nomor Paslon</h4>
+                                <p class="step-description">Penentuan dan pembagian nomor urut pasangan calon secara adil dan transparan.</p>
+                            </div>
+                        </div>
+
+                        <div class="rundown-step-modern" data-aos="fade-left" data-aos-delay="600">
+                            <div class="step-number">06</div>
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon"><i class="fas fa-bullhorn"></i></div>
+                            </div>
+                            <div class="step-content">
+                                <h4 class="step-title">Masa Kampanye</h4>
+                                <p class="step-description">Paslon menyampaikan visi, misi, dan program kerja kepada seluruh warga madrasah melalui berbagai media.</p>
+                            </div>
+                        </div>
+
+                        <div class="rundown-step-modern" data-aos="fade-right" data-aos-delay="600">
+                            <div class="step-number">07</div>
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon"><i class="fas fa-microphone-alt"></i></div>
+                            </div>
+                            <div class="step-content">
+                                <h4 class="step-title">Debat Antar Paslon</h4>
+                                <p class="step-description">Debat terbuka antar pasangan calon di hadapan seluruh siswa untuk memaparkan ide dan program.</p>
+                            </div>
+                        </div>
+
+                        <div class="rundown-step-modern" data-aos="fade-left" data-aos-delay="600">
+                            <div class="step-number">08</div>
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon"><i class="fas fa-hourglass-half"></i></div>
+                            </div>
+                            <div class="step-content">
+                                <h4 class="step-title">Masa Tenang</h4>
+                                <p class="step-description">Periode jeda sebelum pemilihan dimana tidak ada aktivitas kampanye, waktu refleksi bagi pemilih.</p>
+                            </div>
+                        </div>
+
+                        <div class="rundown-step-modern" data-aos="fade-right" data-aos-delay="600">
+                            <div class="step-number">09</div>
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon"><i class="fas fa-vote-yea"></i></div>
+                            </div>
+                            <div class="step-content">
+                                <h4 class="step-title">Pelaksanaan Pemilu</h4>
+                                <p class="step-description">Seluruh siswa memberikan suara untuk memilih ketua dan wakil ketua MPK secara langsung dan demokratis.</p>
+                            </div>
+                        </div>
+
+                        <div class="rundown-step-modern final-step" data-aos="fade-left" data-aos-delay="600">
+                            <div class="step-number">10</div>
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon"><i class="fas fa-award"></i></div>
+                            </div>
+                            <div class="step-content">
+                                <h4 class="step-title">Pelantikan Kepengurusan Baru</h4>
+                                <p class="step-description">Pasangan terpilih dilantik secara resmi sebagai pengurus MPK baru dan siap memimpin organisasi.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="mt-4 text-center" style="font-size:1.1rem;color:#fff;font-style:italic;">
-                    <i class="fas fa-quote-left"></i>
-                    "Langkah kecil hari ini adalah awal dari perubahan besar esok hari."
-                    <i class="fas fa-quote-right"></i>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="info-banner" data-aos="zoom-in" data-aos-delay="600">
+                        <div class="info-banner-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="info-banner-content">
+                            <h5 class="info-banner-title">Informasi Penting</h5>
+                            <p class="info-banner-text">Seluruh informasi resmi terkait seleksi dan pemilihan akan diumumkan melalui website ini. Pantau terus untuk mendapatkan update terbaru!</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1648,92 +815,7 @@
     <script defer src="/_vercel/insights/script.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Smooth scrolling untuk anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const navbarHeight = document.querySelector('.navbar-custom').offsetHeight;
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Parallax effect pada scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.hero-bg');
-            if (parallax) {
-                const speed = scrolled * 0.5;
-                parallax.style.transform = `translateY(${speed}px)`;
-            }
-        });
-
-        // Animate on load
-        window.addEventListener('load', () => {
-            document.body.style.opacity = '1';
-            // Inisialisasi carousel dengan interval
-            const carousels = document.querySelectorAll('.carousel');
-            carousels.forEach(carousel => {
-                new bootstrap.Carousel(carousel, {
-                    interval: 5000,
-                    wrap: true
-                });
-            });
-            // Hide loading overlay with minimal delay
-            const overlay = document.getElementById('loading-overlay');
-            if (overlay) {
-                setTimeout(() => {
-                    overlay.classList.add('hide');
-                    setTimeout(() => { overlay.style.display = 'none'; }, 600);
-                }, 500);
-            }
-        });
-
-        // Efek transparansi navbar saat scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar-custom');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-                navbar.style.boxShadow = '0 4px 24px 0 rgba(120,119,198,0.15), 0 1.5px 0 0 #7877c6';
-            } else {
-                navbar.style.background = 'rgba(10, 10, 10, 0.97)';
-                navbar.style.boxShadow = '0 4px 24px 0 rgba(120,119,198,0.10), 0 1.5px 0 0 #7877c6';
-            }
-        });
-
-        // Back to top button
-        const backToTopButton = document.querySelector('.back-to-top');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('show');
-            } else {
-                backToTopButton.classList.remove('show');
-            }
-        });
-        backToTopButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-        AOS.init();
-    </script>
+    <script src="assets/script.js"></script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
