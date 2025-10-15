@@ -187,9 +187,15 @@ body {
     width: 100%;
 }
 
+.typing-cursor {
+    font-weight: bold;
+    color:rgb(255, 255, 255)3;
+    margin-left: 2px;
+}
+
 .hero-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(rem, 7vw, 5rem);
     font-weight: 800;
     background: linear-gradient(135deg, #ffffff 0%, #7877c6 50%, #ff77c6 100%);
     background-clip: text;
