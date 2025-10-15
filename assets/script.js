@@ -20,6 +20,85 @@ window.addEventListener('scroll', () => {
     parallax.style.transform = `translateY(${speed}px)`;
 });
 
+class TypeWriter {
+    constructor(element, texts, typingSpeed = 100, deletingSpeed = 50, pauseTime = 2000) {
+        this.element = element;
+        this.texts = texts;
+        this.typingSpeed = typingSpeed;
+        this.deletingSpeed = deletingSpeed;
+        this.pauseTime = pauseTime;
+        this.textIndex = 0;
+        this.charIndex = 0;
+        this.isDeleting = false;
+        this.cursorVisible = true;
+        
+        // Mulai efek typing
+        this.type();
+        // Mulai efek blink cursor
+        this.blinkCursor();
+    }
+    
+    type() {
+        const currentText = this.texts[this.textIndex];
+        let displayText = '';
+        
+        if (this.isDeleting) {
+            // Menghapus teks
+            displayText = currentText.substring(0, this.charIndex - 1);
+            this.charIndex--;
+        } else {
+            // Mengetik teks
+            displayText = currentText.substring(0, this.charIndex + 1);
+            this.charIndex++;
+        }
+        
+        // Update teks dengan cursor
+        this.updateDisplay(displayText);
+        
+        if (!this.isDeleting && this.charIndex === currentText.length) {
+            // Selesai mengetik, tunggu sebentar lalu mulai menghapus
+            setTimeout(() => {
+                this.isDeleting = true;
+                this.type();
+            }, this.pauseTime);
+            return;
+        }
+        
+        if (this.isDeleting && this.charIndex === 0) {
+            // Selesai menghapus, pindah ke teks berikutnya
+            this.isDeleting = false;
+            this.textIndex = (this.textIndex + 1) % this.texts.length;
+        }
+        
+        const speed = this.isDeleting ? this.deletingSpeed : this.typingSpeed;
+        setTimeout(() => this.type(), speed);
+    }
+    
+    updateDisplay(text) {
+        const cursor = this.cursorVisible ? '<span class="typing-cursor">|</span>' : '<span class="typing-cursor" style="opacity: 0">|</span>';
+        this.element.innerHTML = text + cursor;
+    }
+    
+    blinkCursor() {
+        setInterval(() => {
+            this.cursorVisible = !this.cursorVisible;
+            const currentText = this.texts[this.textIndex].substring(0, this.charIndex);
+            this.updateDisplay(currentText);
+        }, 500); // Blink setiap 500ms
+    }
+}
+
+// Cara penggunaan
+const element = document.getElementById('typing-text');
+const texts = [
+    "Majelis Permusyawaratan Kelas",
+    "MPK MAN IC OKI",
+    "Kirimkan Aspirasi dan Ide-ide Kreatifmu",
+    "Ayo Berkontribusi Untuk Sekolah!"
+];
+
+new TypeWriter(element, texts, 100, 50, 2000);
+
 // Smooth scrolling untuk anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
