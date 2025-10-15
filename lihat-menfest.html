@@ -15,7 +15,7 @@
     <div class="container">
         <div class="menfest-form-card">
             <h2 class="mb-4 text-center" style="font-family:'Space Grotesk',sans-serif;font-weight:700;">
-                <i class="fas fa-search me-2"></i> Lihat Menfest
+                <i class="fas fa-search me-2"></i> Lihat Menfess
             </h2>
             <form id="cariMenfestForm" autocomplete="off">
                 <div class="mb-3">
@@ -25,7 +25,7 @@
                     <input type="text" class="form-control" id="namaCari" name="namaCari" placeholder="Masukkan nama lengkap atau NISN" required>
                 </div>
                 <button type="submit" class="btn btn-success w-100 mt-3" id="btnCari">
-                    <i class="fas fa-search me-2"></i> Cari Menfest
+                    <i class="fas fa-search me-2"></i> Cari Menfess
                 </button>
             </form>
             <div id="hasilMenfest" class="mt-4"></div>
@@ -77,7 +77,7 @@
             // Disable button dan tampilkan loading
             btnCari.disabled = true;
             btnCari.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Mencari...';
-            hasilDiv.innerHTML = '<div class="text-center text-secondary"><i class="fas fa-spinner fa-spin"></i> Mencari menfest...</div>';
+            hasilDiv.innerHTML = '<div class="text-center text-secondary"><i class="fas fa-spinner fa-spin"></i> Mencari menfess...</div>';
             
             // Query data dari Supabase tabel 'data'
             const { data, error } = await supabaseClient
@@ -104,7 +104,7 @@
                 hasilDiv.innerHTML = `
                     <div class="alert alert-info text-center mb-3">
                         <i class="fas fa-envelope-open-text me-2"></i> 
-                        Ditemukan <strong>${data.length}</strong> menfest untuk <strong>${escapeHtml(nama)}</strong>
+                        Ditemukan <strong>${data.length}</strong> menfess untuk <strong>${escapeHtml(nama)}</strong>
                     </div>
                     ${cards}
                 `;
@@ -112,7 +112,7 @@
                 hasilDiv.innerHTML = `
                     <div class="alert alert-warning text-center">
                         <i class="fas fa-info-circle me-2"></i> 
-                        Tidak ada menfest ditemukan untuk <strong>${escapeHtml(nama)} (Apakah Sudah Kapital Semua?)</strong>
+                        Tidak ada menfess ditemukan untuk <strong>${escapeHtml(nama)} (Apakah Sudah Kapital Semua?)</strong>
                     </div>`;
             }
 
@@ -126,7 +126,7 @@
         } finally {
             // Re-enable button
             btnCari.disabled = false;
-            btnCari.innerHTML = '<i class="fas fa-search me-2"></i> Cari Menfest';
+            btnCari.innerHTML = '<i class="fas fa-search me-2"></i> Cari menfess';
         }
     }
     
@@ -167,4 +167,5 @@
 </body>
 
 </html>
+
 
