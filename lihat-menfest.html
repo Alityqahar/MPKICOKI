@@ -71,9 +71,7 @@
 
     // Validasi: minimal 2 kata
     function validateTwoWords(text) {
-        if (!text) return false;
-        const words = text.trim().split(/\s+/).filter(Boolean);
-        return words.length >= 2;
+        return true
     }
     
     // Function untuk mencari menfest (dipisah agar tidak blocking UI)
@@ -181,5 +179,6 @@
     </script>
 </body>
 </html>
+
 
 
