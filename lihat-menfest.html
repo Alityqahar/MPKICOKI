@@ -23,7 +23,7 @@
                         <i class="fas fa-user-circle me-1"></i> Nama Lengkap
                     </label>
                     <input type="text" class="form-control" id="namaCari" name="namaCari" placeholder="Masukkan nama lengkap" required>
-                    <span class="text-white">Hindari pemakain kata muhammad/M./muhamad</span>
+                    <span class="text-white">Hindari pemakain kata muhammad/M./muhamad</span><br>
                     <span>Sebaiknya gunakan nama panggilan</span>
                 </div>
                 <button type="submit" class="btn btn-success w-100 mt-3" id="btnCari">
@@ -84,7 +84,7 @@
             // Disable button dan tampilkan loading
             btnCari.disabled = true;
             btnCari.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Mencari...';
-            hasilDiv.innerHTML = '<div class="text-center text-secondary"><i class="fas fa-spinner fa-spin"></i> Mencari menfest...</div>';
+            hasilDiv.innerHTML = '<div class="text-center text-secondary"><i class="fas fa-spinner fa-spin"></i> Mencari menfess...</div>';
             
             // Query data dari Supabase tabel 'data'
             const { data, error } = await supabaseClient
@@ -180,6 +180,7 @@
     </script>
 </body>
 </html>
+
 
 
 
