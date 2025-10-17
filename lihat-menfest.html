@@ -22,7 +22,7 @@
                     <label for="namaCari" class="form-label">
                         <i class="fas fa-user-circle me-1"></i> Nama Lengkap
                     </label>
-                    <input type="text" class="form-control" id="namaCari" name="namaCari" placeholder="Masukkan nama lengkap atau NISN" required>
+                    <input type="text" class="form-control" id="namaCari" name="namaCari" placeholder="Masukkan nama lengkap" required>
                 </div>
                 <button type="submit" class="btn btn-success w-100 mt-3" id="btnCari">
                     <i class="fas fa-search me-2"></i> Cari Menfess
@@ -36,7 +36,7 @@
     // Tunggu hingga window.supabase tersedia
     function initSupabase() {
         const SUPABASE_URL = 'https://bpcryzfrjqonfyduncbc.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJwY3J5emZyanFvbmZ5ZHVuY2JjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA1MTIyNzEsImV4cCI6MjA3NjA4ODI3MX0.[...]';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJwY3J5emZyanFvbmZ5ZHVuY2JjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA1MTIyNzEsImV4cCI6MjA3NjA4ODI3MX0.XSrJRCyovdI_vmPZvjVpeMM3rVCndN5YsKTgfpGHJok';
         
         // Cek berbagai kemungkinan namespace
         if (window.supabase && typeof window.supabase.createClient === 'function') {
@@ -67,6 +67,13 @@
         };
         return text.replace(/[&<>"']/g, m => map[m]);
     }
+
+    // Validasi: minimal 2 kata
+    function validateTwoWords(text) {
+        if (!text) return false;
+        const words = text.trim().split(/\s+/).filter(Boolean);
+        return words.length >= 2;
+    }
     
     // Function untuk mencari menfest (dipisah agar tidak blocking UI)
     async function cariMenfest(nama) {
@@ -77,7 +84,7 @@
             // Disable button dan tampilkan loading
             btnCari.disabled = true;
             btnCari.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Mencari...';
-            hasilDiv.innerHTML = '<div class="text-center text-secondary"><i class="fas fa-spinner fa-spin"></i> Mencari menfess...</div>';
+            hasilDiv.innerHTML = '<div class="text-center text-secondary"><i class="fas fa-spinner fa-spin"></i> Mencari menfest...</div>';
             
             // Query data dari Supabase tabel 'data'
             const { data, error } = await supabaseClient
@@ -104,7 +111,7 @@
                 hasilDiv.innerHTML = `
                     <div class="alert alert-info text-center mb-3">
                         <i class="fas fa-envelope-open-text me-2"></i> 
-                        Ditemukan <strong>${data.length}</strong> menfess untuk <strong>${escapeHtml(nama)}</strong>
+                        Ditemukan <strong>${data.length}</strong> Menfess untuk <strong>${escapeHtml(nama)}</strong>
                     </div>
                     ${cards}
                 `;
@@ -112,7 +119,7 @@
                 hasilDiv.innerHTML = `
                     <div class="alert alert-warning text-center">
                         <i class="fas fa-info-circle me-2"></i> 
-                        Tidak ada menfess ditemukan untuk <strong>${escapeHtml(nama)} (Apakah Sudah Kapital Semua?)</strong>
+                        Tidak ada menfest ditemukan untuk <strong>${escapeHtml(nama)}</strong>
                     </div>`;
             }
 
@@ -126,7 +133,7 @@
         } finally {
             // Re-enable button
             btnCari.disabled = false;
-            btnCari.innerHTML = '<i class="fas fa-search me-2"></i> Cari menfess';
+            btnCari.innerHTML = '<i class="fas fa-search me-2"></i> Cari Menfess';
         }
     }
     
@@ -156,16 +163,15 @@
                 successMsg.classList.remove('d-none');
                 return;
             }
-
-            // Validasi: wajib minimal 2 kata (karena tidak ada input NISN terpisah)
-            const words = nama.split(/\s+/).filter(w => w.length > 0);
-            if (words.length < 2) {
-                successMsg.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i> Nama harus berisi minimal 2 kata (contoh: "Nama Depan Nama Belakang").';
+            
+            // Validasi minimal 2 kata
+            if (!validateTwoWords(nama)) {
+                successMsg.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i> Masukkan minimal 2 kata untuk pencarian.';
                 successMsg.classList.remove('d-none');
                 return;
             }
-            
-            console.log('Mencari menfest untuk:', nama);
+
+            console.log('Mencari menfess untuk:', nama);
             
             // Panggil async function tanpa await (non-blocking)
             cariMenfest(nama);
