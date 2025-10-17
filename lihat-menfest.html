@@ -24,6 +24,7 @@
                     </label>
                     <input type="text" class="form-control" id="namaCari" name="namaCari" placeholder="Masukkan nama lengkap" required>
                     <span class="text-white">Hindari pemakain kata muhammad/M./muhamad</span>
+                    <span>Sebaiknya gunakan nama panggilan</span>
                 </div>
                 <button type="submit" class="btn btn-success w-100 mt-3" id="btnCari">
                     <i class="fas fa-search me-2"></i> Cari Menfess
@@ -71,7 +72,7 @@
 
     // Validasi: minimal 2 kata
     function validateTwoWords(text) {
-        return true
+        return text.length > 3;
     }
     
     // Function untuk mencari menfest (dipisah agar tidak blocking UI)
@@ -165,7 +166,7 @@
             
             // Validasi minimal 2 kata
             if (!validateTwoWords(nama)) {
-                successMsg.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i> Masukkan minimal 2 kata untuk pencarian.';
+                successMsg.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i> Masukkan minimal 4 huruf untuk pencarian.';
                 successMsg.classList.remove('d-none');
                 return;
             }
