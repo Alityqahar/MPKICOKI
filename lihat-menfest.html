@@ -36,7 +36,7 @@
     // Tunggu hingga window.supabase tersedia
     function initSupabase() {
         const SUPABASE_URL = 'https://bpcryzfrjqonfyduncbc.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJwY3J5emZyanFvbmZ5ZHVuY2JjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA1MTIyNzEsImV4cCI6MjA3NjA4ODI3MX0.XSrJRCyovdI_vmPZvjVpeMM3rVCndN5YsKTgfpGHJok';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJwY3J5emZyanFvbmZ5ZHVuY2JjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA1MTIyNzEsImV4cCI6MjA3NjA4ODI3MX0.[...]';
         
         // Cek berbagai kemungkinan namespace
         if (window.supabase && typeof window.supabase.createClient === 'function') {
@@ -156,6 +156,14 @@
                 successMsg.classList.remove('d-none');
                 return;
             }
+
+            // Validasi: wajib minimal 2 kata (karena tidak ada input NISN terpisah)
+            const words = nama.split(/\s+/).filter(w => w.length > 0);
+            if (words.length < 2) {
+                successMsg.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i> Nama harus berisi minimal 2 kata (contoh: "Nama Depan Nama Belakang").';
+                successMsg.classList.remove('d-none');
+                return;
+            }
             
             console.log('Mencari menfest untuk:', nama);
             
@@ -165,8 +173,4 @@
     });
     </script>
 </body>
-
 </html>
-
-
-
